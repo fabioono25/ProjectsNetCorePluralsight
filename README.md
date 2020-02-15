@@ -1,0 +1,2 @@
+# ProjectsNetCorePluralsight
+Projects From Pluralsight
