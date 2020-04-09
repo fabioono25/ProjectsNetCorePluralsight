@@ -1,8 +1,6 @@
 ﻿using OdeToFood.Core;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace OdeToFood.Data
 {
@@ -10,6 +8,8 @@ namespace OdeToFood.Data
     {
         IEnumerable<Restaurant> GetRestaurantsByName(string name);
         Restaurant GetById(int id);
+        Restaurant Update(Restaurant updatedRestaurant);
+        int Commit();
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -21,10 +21,16 @@ namespace OdeToFood.Data
         {
             restaurants = new List<Restaurant>
             {
-                new Restaurant { Id = 1, Name = "Japan Food", Cuisine = Restaurant.CuisineType.Japanese, Location = "Jp Street" },
-                new Restaurant { Id = 2, Name = "Italian Food", Cuisine = Restaurant.CuisineType.Italian, Location = "Ita Street" },
-                new Restaurant { Id = 3, Name = "Indian Food", Cuisine = Restaurant.CuisineType.Indian, Location = "Indian Street" }
+                new Restaurant { Id = 1, Name = "Japan Food", Cuisine = CuisineType.Japanese, Location = "Jp Street" },
+                new Restaurant { Id = 2, Name = "Italian Food", Cuisine = CuisineType.Italian, Location = "Ita Street" },
+                new Restaurant { Id = 3, Name = "Indian Food", Cuisine = CuisineType.Indian, Location = "Indian Street" }
             };
+        }
+
+        //Units of work
+        public int Commit()
+        {
+            return 0;
         }
 
         public Restaurant GetById(int id)
@@ -38,6 +44,20 @@ namespace OdeToFood.Data
                    where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                    orderby r.Name
                    select r;
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);
+
+            if (restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+
+            return restaurant;
         }
     }
 }
