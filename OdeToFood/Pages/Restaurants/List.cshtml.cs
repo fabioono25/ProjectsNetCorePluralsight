@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,9 @@ namespace OdeToFood.Pages.Restaurants
     {
         private readonly IConfiguration configuration;
         private readonly IRestaurantData restaurantData;
+
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; } //another way to model binding
 
         public string Message { get; set; }
         public IEnumerable<Restaurant> Restaurants { get; set; }
@@ -28,7 +32,10 @@ namespace OdeToFood.Pages.Restaurants
         {
             Message = configuration["Message"];
 
-            Restaurants = restaurantData.GetAll();
+            //HttpContext.Request.Query["search-input"]
+
+            //model binding approach
+            Restaurants = restaurantData.GetRestaurantsByName(SearchTerm);
         }
     }
 }

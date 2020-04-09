@@ -26,6 +26,8 @@ namespace OdeToFood
         {
             services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
 
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
             services.AddRazorPages();
         }
 
@@ -35,6 +37,7 @@ namespace OdeToFood
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
