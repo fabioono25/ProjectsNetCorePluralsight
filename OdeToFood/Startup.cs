@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,7 +47,7 @@ namespace OdeToFood
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(); //exception in pipeline
                 app.UseBrowserLink();
             }
             else
@@ -56,9 +57,13 @@ namespace OdeToFood
                 app.UseHsts();
             }
 
+            app.Use(SayHelloMiddleware);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseNodeModules();
+            
+            //app.UseCookiePolicy();
 
             app.UseRouting();
 
@@ -69,6 +74,23 @@ namespace OdeToFood
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+        }
+
+        private RequestDelegate SayHelloMiddleware(RequestDelegate next)
+        {
+            return async ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/hello"))
+                {
+                    await ctx.Response.WriteAsync("Hello, world!");
+                }
+                else
+                {
+                    await next(ctx);
+
+                    //if(ctx.Response.StatusCode == 200)
+                }
+            };
         }
     }
 }
