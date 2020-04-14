@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PieShop.Models;
+using PieShop.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,6 +23,7 @@ namespace PieShop.Controllers
 
         public ViewResult List(string category)
         {
+            ViewBag.CurrentCategory = "Cheese cakes";
 
             IEnumerable<Pie> pies;
             //string currentCategory = string.Empty;
@@ -38,13 +40,11 @@ namespace PieShop.Controllers
             //    currentCategory = _categoryRepository.Categories.FirstOrDefault(c => c.CategoryName == category).CategoryName;
             //}
 
-            //return View(new PiesListViewModel
-            //{
-            //    Pies = pies,
-            //    CurrentCategory = currentCategory
-            //});
-
-            return View(pies);
+            return View(new PiesListViewModel
+            {
+                Pies = pies
+               // CurrentCategory = currentCategory
+            });
         }
     }
 }
