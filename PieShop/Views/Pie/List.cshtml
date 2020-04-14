@@ -6,9 +6,16 @@
 
 @foreach (var pie in Model.Pies)
 {
-    <div>
-        <h2>@pie.Name</h2>
-        <h3>@pie.Price.ToString("c")</h3>
-        <h4>@pie.Category.CategoryName</h4>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@pie.ImageThumbnailUrl" alt="" />
+            <div class="caption">
+                <h2 class="pull-right">@pie.Name</h2>
+                <h3>
+                    <a>@pie.Price.ToString("c")</a>
+                </h3>
+                <p>@pie.Category.CategoryName</p>
+            </div>
+        </div>
     </div>
 }
