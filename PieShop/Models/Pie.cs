@@ -29,6 +29,7 @@ namespace PieShop.Models
         public bool InStock { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+        public string Notes { get; set; }
         //public virtual List<PieReview> PieReviews { get; set; }
 
         //Specific for Model Binding
