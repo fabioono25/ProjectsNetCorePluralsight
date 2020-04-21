@@ -38,6 +38,10 @@ namespace PieShop
             //services.AddScoped<IPieRepository, MockPieRepository>();
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
 
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            services.AddHttpContextAccessor();
+            services.AddSession();
+
             //support for MVC
             services.AddControllersWithViews();
         }
@@ -53,6 +57,7 @@ namespace PieShop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession(); //add session before routing
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
