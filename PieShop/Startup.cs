@@ -53,8 +53,8 @@ namespace PieShop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseRouting();
-            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

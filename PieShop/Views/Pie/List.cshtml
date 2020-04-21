@@ -12,6 +12,9 @@
             <div class="caption">
                 <h2 class="pull-right">@pie.Name</h2>
                 <h3>
+                    <a asp-controller="Pie" asp-action="Details" asp-route-id="@pie.PieId">@pie.Name</a>
+                </h3>
+                <h3>
                     <a>@pie.Price.ToString("c")</a>
                 </h3>
                 <p>@pie.Category.CategoryName</p>
