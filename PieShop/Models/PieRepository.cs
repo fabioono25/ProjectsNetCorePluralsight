@@ -7,16 +7,20 @@ namespace PieShop.Models
     public class PieRepository : IPieRepository
     {
         private readonly AppDbContext _appDbContext;
+        private readonly ILog _log;
 
-        public PieRepository(AppDbContext appDbContext)
+        public PieRepository(AppDbContext appDbContext, ILog log)
         {
             _appDbContext = appDbContext;
+            _log = log;
         }
 
         public IEnumerable<Pie> Pies
         {
             get
             {
+                _log.LogException("an error ocurred");
+
                 return _appDbContext.Pies.Include(c => c.Category);
             }
         }

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using PieShop.Models;
 
 namespace PieShop
@@ -24,6 +25,13 @@ namespace PieShop
             //connection
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //services
+            services.AddSingleton<ILog, Log>();
+            //            services.AddSingleton<ILogger, LoggerFactory>();
+            services.AddSingleton<ILoggerFactory, LoggerFactory>();
+            services.AddLogging();
+            //services.AddSingleton(typeof(ILogger<>), typeof(ILogger<>));
+
             //register services
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -35,17 +43,18 @@ namespace PieShop
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
+                logger.LogInformation("is develop");
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

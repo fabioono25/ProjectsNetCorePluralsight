@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PieShop.Models;
 using PieShop.ViewModels;
 
@@ -14,15 +15,22 @@ namespace PieShop.Controllers
     {
         private readonly IPieRepository _pieRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ILog _log;
+        private readonly ILogger<PieController> _logger;
 
-        public PieController(IPieRepository pieRepository, ICategoryRepository categoryRepository)
+        public PieController(IPieRepository pieRepository, ICategoryRepository categoryRepository, ILog log, ILogger<PieController> logger)
         {
             _pieRepository = pieRepository;
             _categoryRepository = categoryRepository;
+            _log = log;
+            _logger = logger;
         }
 
         public ViewResult List(string category)
         {
+            _logger.LogError("adsasdad");
+            _log.LogException("an error ocurred");
+
             ViewBag.CurrentCategory = "Cheese cakes";
 
             IEnumerable<Pie> pies;
