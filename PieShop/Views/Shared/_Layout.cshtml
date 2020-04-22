@@ -30,6 +30,7 @@
                     @await Component.InvokeAsync("CategoryMenu")
 
                     @await Component.InvokeAsync("ShoppingCartSummary")
+                    <partial name="_LoginPartial"/>
                 </ul>
             </div>
         </div>
@@ -48,6 +49,6 @@
             @await Html.PartialAsync("LanguageSelection")*@
         </div>
     </div>
-
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

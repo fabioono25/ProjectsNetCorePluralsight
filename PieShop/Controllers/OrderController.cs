@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PieShop.Controllers
 {
+    [Authorize]
     public class OrderController: Controller
     {
         private readonly IOrderRepository _orderRepository;
