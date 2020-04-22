@@ -59,6 +59,7 @@ namespace PieShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession(); //add session before routing
+            app.UseAuthentication(); //add support to Identity
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
