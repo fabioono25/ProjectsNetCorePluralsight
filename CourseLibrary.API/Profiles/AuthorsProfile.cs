@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using CourseLibrary.API.Entities;
 using CourseLibrary.API.Helpers;
+using CourseLibrary.API.Models;
 
 namespace CourseLibrary.API.Profiles
 {
@@ -15,6 +17,8 @@ namespace CourseLibrary.API.Profiles
                     dest => dest.Age, 
                     opt => opt.MapFrom(src => src.DateOfBirth.GetCurrentAge()));
             ;
+
+            CreateMap<AuthorForCreationDto, Author>();
         }
     }
 }
