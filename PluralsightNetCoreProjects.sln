@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieShop", "PieShop\PieShop.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseLibrary.API", "CourseLibrary.API\CourseLibrary.API.csproj", "{4AFCE64B-1809-4FE8-8D4A-C8444A5BCBAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Api", "Books.Api\Books.Api.csproj", "{DDC6FDA1-CA8E-41A3-9A71-89621055EB1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{4AFCE64B-1809-4FE8-8D4A-C8444A5BCBAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AFCE64B-1809-4FE8-8D4A-C8444A5BCBAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AFCE64B-1809-4FE8-8D4A-C8444A5BCBAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC6FDA1-CA8E-41A3-9A71-89621055EB1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC6FDA1-CA8E-41A3-9A71-89621055EB1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC6FDA1-CA8E-41A3-9A71-89621055EB1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC6FDA1-CA8E-41A3-9A71-89621055EB1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
