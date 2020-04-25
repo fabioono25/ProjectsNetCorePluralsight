@@ -133,13 +133,13 @@ namespace Books.Api.Services
             }
 
             // create the tasks
-            //var downloadBookCoverTasksQuery =
-            //     from bookCoverUrl
-            //     in bookCoverUrls
-            //     select DownloadBookCoverAsync(httpClient, bookCoverUrl, _cancellationTokenSource.Token);
+            var downloadBookCoverTasksQuery =
+                 from bookCoverUrl
+                 in bookCoverUrls
+                 select DownloadBookCoverAsync(httpClient, bookCoverUrl);//, _cancellationTokenSource.Token);
 
-            // start the tasks
-            //var downloadBookCoverTasks = downloadBookCoverTasksQuery.ToList();
+            //start the tasks
+            var downloadBookCoverTasks = downloadBookCoverTasksQuery.ToList();
 
             //try
             //{
@@ -160,8 +160,29 @@ namespace Books.Api.Services
             //    _logger.LogError($"{exception.Message}");
             //    throw;
             //}
-            return bookCovers;
+            return await Task.WhenAll(downloadBookCoverTasks);
         }
+
+        private async Task<BookCover> DownloadBookCoverAsync(
+        HttpClient httpClient, string bookCoverUrl)//, CancellationToken cancellationToken)
+        {
+            throw new Exception("Cannot download book cover, writer isn't finishing book fast enough.");
+
+            var response = await httpClient
+                       .GetAsync(bookCoverUrl);//, cancellationToken);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var bookCover = JsonConvert.DeserializeObject<BookCover>(
+                    await response.Content.ReadAsStringAsync());
+                return bookCover;
+            }
+
+           // _cancellationTokenSource.Cancel();
+
+            return null;
+        }
+
 
         //public void Dispose()
         //{
