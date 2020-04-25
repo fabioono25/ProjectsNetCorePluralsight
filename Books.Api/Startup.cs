@@ -1,4 +1,5 @@
 using Books.Api.Contexts;
+using Books.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,8 @@ namespace Books.Api
         {
             var connectionString = Configuration.GetConnectionString("BooksDBConnectionString");
             services.AddDbContext<BooksContext>(o => o.UseSqlServer(connectionString));
+
+            services.AddScoped<IBooksRepository, BooksRepository>();
 
             services.AddControllers();
         }
