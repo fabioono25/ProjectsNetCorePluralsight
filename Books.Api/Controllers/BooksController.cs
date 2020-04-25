@@ -32,8 +32,8 @@ namespace Books.Api.Controllers
         }
 
         [HttpGet]
-        [BookResultFilter]
-        [Route("{id}")]
+        [BookWithCoversResultFilterAttribute]
+        [Route("{id}", Name="GetBook")]
         public async Task<IActionResult> GetBook(Guid id)
         {
             var bookEntity = await _booksRepository.GetBookAsync(id);
@@ -42,7 +42,15 @@ namespace Books.Api.Controllers
                 return NotFound();
             }
 
-            return Ok(bookEntity);
+            var bookCovers = await _booksRepository.GetBookCoversAsync(id);
+
+            //var propertyBag = new Tuple<Entities.Book, IEnumerable<ExternalModels.BookCover>>(
+            //    bookEntity, bookCovers);
+
+            //(Entities.Book book, IEnumerable<ExternalModels.BookCover> bookCovers) propertyBag = 
+            //    (bookEntity, bookCovers);
+
+            return Ok((bookEntity, bookCovers));
         }
 
         [HttpPost]
