@@ -148,7 +148,7 @@ namespace Library.API
 
             app.UseStaticFiles();
 
-            app.UseMvc();
+            //app.UseMvc();
         }
     }
 }
