@@ -22,7 +22,11 @@ namespace Books.Api.Controllers
         [HttpGet]
         public IActionResult GetBooks()
         {
-            var bookEntities = _booksRepository.GetBooks();
+            //            var bookEntities = _booksRepository.GetBooks();
+            var bookEntities = _booksRepository.GetBooksAsync().Result; //blocking Async Code - not good
+
+            //_booksRepository.GetBooksAsync().Wait(); -- blocking async code
+
             return Ok(bookEntities);
         }
     }

@@ -121,6 +121,37 @@ namespace Books.Api.Services
 
         }
 
+        // Piftall #3: modifying shared state
+        //   // note: using HttpClient directly for readability purposes. 
+        //   // It's better to initialize the client via _httpClientFactory, 
+        //   // eg on constructing
+
+        //   private HttpClient _httpClient = new HttpClient();
+
+        //   public async Task<IEnumerable<BookCover>> DownloadBookCoverAsync(Guid bookId)
+        //   {
+        //       var bookCoverUrls = new[]
+        //       {
+        //    $"http://localhost:52644/api/bookcovers/{bookId}-dummycover1",
+        //    $"http://localhost:52644/api/bookcovers/{bookId}-dummycover2"
+        //};
+
+        //       var bookCovers = new List<BookCover>();
+        //       var downloadTask1 = DownloadBookCoverAsync(bookCoverUrls[0], bookCovers);
+        //       var downloadTask2 = DownloadBookCoverAsync(bookCoverUrls[1], bookCovers);
+        //       await Task.WhenAll(downloadTask1, downloadTask2);
+        //       return bookCovers;
+        //   }
+
+        //   private async Task DownloadBookCoverAsync(string bookCoverUrl, List<BookCover> bookCovers)
+        //   {
+        //       var response = await _httpClient.GetAsync(bookCoverUrl);
+        //       var bookCover = JsonConvert.DeserializeObject<BookCover>(
+        //               await response.Content.ReadAsStringAsync());
+
+        //       bookCovers.Add(bookCover);
+        //   }
+
         public async Task<IEnumerable<BookCover>> GetBookCoversAsync(Guid bookId)
         {
             var httpClient = _httpClientFactory.CreateClient();

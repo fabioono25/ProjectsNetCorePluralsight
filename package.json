@@ -1,0 +1,20 @@
+{
+  "name": "ProjectsNetCorePluralsight",
+  "version": "1.0.0",
+  "description": "Projects From Pluralsight",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabioono25/ProjectsNetCorePluralsight.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabioono25/ProjectsNetCorePluralsight/issues"
+  },
+  "homepage": "https://github.com/fabioono25/ProjectsNetCorePluralsight#readme"
+}
