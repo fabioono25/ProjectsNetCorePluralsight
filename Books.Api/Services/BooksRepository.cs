@@ -53,5 +53,27 @@ namespace Books.Api.Services
             _context.Database.ExecuteSqlRaw("WAITFOR DELAY '00:00:02';");
             return _context.Books.Include(b => b.Author).ToList();
         }
+
+        public void AddBook(Book bookToAdd)
+        {
+            if (bookToAdd == null)
+            {
+                throw new ArgumentNullException(nameof(bookToAdd));
+            }
+
+            _context.Add(bookToAdd);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            // return true if 1 or more entities were changed
+            return (await _context.SaveChangesAsync() > 0);
+        }
+
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
     }
 }
