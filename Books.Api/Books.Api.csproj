@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0-preview.3.20181.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0-preview.3.20181.2">
       <PrivateAssets>all</PrivateAssets>

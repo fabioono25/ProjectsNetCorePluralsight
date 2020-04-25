@@ -1,3 +1,4 @@
+using AutoMapper;
 using Books.Api.Contexts;
 using Books.Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Books.Api
 {
@@ -25,6 +27,8 @@ namespace Books.Api
             services.AddDbContext<BooksContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<IBooksRepository, BooksRepository>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers();
         }
