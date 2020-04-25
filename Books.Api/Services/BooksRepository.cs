@@ -30,8 +30,24 @@ namespace Books.Api.Services
 
         public async Task<Book> GetBookAsync(Guid id)
         {
+            //var pageCalculator = new Books.Legacy.ComplicatedPageCalculator();
+            //var amountOfPages = pageCalculator.CalculateBookPages();
+            _logger.LogInformation($"ThreadId when entering GetBookAsync: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
+            var bookPages = await GetBookPages();
+
             return await _context.Books.Include(b => b.Author)
                 .FirstOrDefaultAsync(b => b.Id == id);
+        }
+
+        private Task<int> GetBookPages()
+        {
+            return Task.Run(() =>
+            {
+                _logger.LogInformation($"ThreadId when calculating the amount of pages: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
+
+                var pageCalculator = new Books.Legacy.ComplicatedPageCalculator();
+                return pageCalculator.CalculateBookPages();
+            });
         }
 
         public async Task<IEnumerable<Book>> GetBooksAsync()
