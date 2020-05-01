@@ -88,7 +88,7 @@ namespace CourseLibrary.API.Controllers
         public IActionResult GetAuthor(Guid authorId, string fields)
         {
             if (!_propertyCheckerService.TypeHasProperties<AuthorDto>
-              (authorsResourceParameters.Fields))
+              (fields))
             {
                 return BadRequest();
             }
