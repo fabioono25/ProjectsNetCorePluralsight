@@ -83,6 +83,9 @@ namespace CourseLibrary.API
                 };
             });//add controllers to DI 
 
+            // register PropertyMappingService
+            services.AddTransient<IPropertyMappingService, PropertyMappingService>();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<ICourseLibraryRepository, CourseLibraryRepository>();
