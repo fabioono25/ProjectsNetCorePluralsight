@@ -29,10 +29,17 @@ namespace CourseLibrary.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
+
             services.AddControllers(setup =>
             {
                 setup.ReturnHttpNotAcceptable = true;
-                setup.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+                setup.CacheProfiles.Add("240SecondsCacheProfile",
+                                                new CacheProfile()
+                                                {
+                                                    Duration = 240
+                                                });
+                //setup.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
             })
             .AddNewtonsoftJson(setupAction =>
             {
@@ -129,6 +136,8 @@ namespace CourseLibrary.API
                     });
                 });
             }
+
+            app.UseResponseCaching(); //before use routing and endpoints
 
             app.UseRouting(); //routing decision is made
 
