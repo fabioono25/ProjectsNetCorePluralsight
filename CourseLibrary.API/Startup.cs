@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Linq;
 
 namespace CourseLibrary.API
 {
@@ -82,6 +83,17 @@ namespace CourseLibrary.API
                     };
                 };
             });//add controllers to DI 
+
+            services.Configure<MvcOptions>(config =>
+            {
+                var newtonsoftJsonOutputFormatter = config.OutputFormatters
+                      .OfType<NewtonsoftJsonOutputFormatter>()?.FirstOrDefault();
+
+                if (newtonsoftJsonOutputFormatter != null)
+                {
+                    newtonsoftJsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.marvin.hateoas+json");
+                }
+            });
 
             // register PropertyMappingService
             services.AddTransient<IPropertyMappingService, PropertyMappingService>();
