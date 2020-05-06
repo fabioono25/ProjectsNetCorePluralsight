@@ -20,6 +20,8 @@ namespace TennisBookings.Web
         {
             services.AddTransient<IWeatherForecaster, AmazingWeatherForecaster>();
 
+            services.Configure<FeaturesConfiguration>(Configuration.GetSection("Features"));
+
             services.AddControllersWithViews(mvc => mvc.EnableEndpointRouting = false);
         }
 
