@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood.Data", "OdeToFood
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieShop", "PieShop\PieShop.csproj", "{5A7A6556-B023-4BCC-B5AF-AA2B8D251BE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseLibrary.API", "CourseLibrary.API\CourseLibrary.API.csproj", "{4AFCE64B-1809-4FE8-8D4A-C8444A5BCBAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseLibrary.API", "CourseLibrary.API\CourseLibrary.API.csproj", "{4AFCE64B-1809-4FE8-8D4A-C8444A5BCBAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Api", "Books.Api\Books.Api.csproj", "{DDC6FDA1-CA8E-41A3-9A71-89621055EB1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Api", "Books.Api\Books.Api.csproj", "{DDC6FDA1-CA8E-41A3-9A71-89621055EB1D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCovers.API", "BookCovers.API\BookCovers.API.csproj", "{F6B36656-59F5-4B9D-8695-E04E9E832568}"
 EndProject
@@ -33,7 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WiredBrain.Console", "Wired
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.API", "Library.API\Library.API.csproj", "{0F5C8317-A6AA-4B19-B669-4B3BEDF33E67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPAAngular.Web", "SPAAngular.Web\SPAAngular.Web.csproj", "{2B96F03A-AC2D-4901-A51A-552DD0BD4D55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPAAngular.Web", "SPAAngular.Web\SPAAngular.Web.csproj", "{2B96F03A-AC2D-4901-A51A-552DD0BD4D55}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.Web", "TennisBookings\src\TennisBookings.Web\TennisBookings.Web.csproj", "{0CC653FD-5C84-4465-A1D5-12EA82248D55}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.Web.Tests", "TennisBookings\test\TennisBookings.Web.Tests\TennisBookings.Web.Tests.csproj", "{13BBD5BE-C4F9-4F37-9452-8F79BF9DA39A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +109,14 @@ Global
 		{2B96F03A-AC2D-4901-A51A-552DD0BD4D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B96F03A-AC2D-4901-A51A-552DD0BD4D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B96F03A-AC2D-4901-A51A-552DD0BD4D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CC653FD-5C84-4465-A1D5-12EA82248D55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC653FD-5C84-4465-A1D5-12EA82248D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC653FD-5C84-4465-A1D5-12EA82248D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC653FD-5C84-4465-A1D5-12EA82248D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13BBD5BE-C4F9-4F37-9452-8F79BF9DA39A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13BBD5BE-C4F9-4F37-9452-8F79BF9DA39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13BBD5BE-C4F9-4F37-9452-8F79BF9DA39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13BBD5BE-C4F9-4F37-9452-8F79BF9DA39A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
