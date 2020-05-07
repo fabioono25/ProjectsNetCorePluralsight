@@ -38,7 +38,10 @@ namespace TennisBookings.Web.Pages
 
             var homePageFeatures = _configuration.GetSection("Features:HomePage");
             homePageFeatures.GetValue<bool>("EnableGreeting");
-            
+
+            var features = new Features();
+            _configuration.Bind("Features:HomePage", features);
+
             Greeting = _greetingService.GetRandomHomePageGreeting();            
 
             if (_featuresConfiguration.EnableWeatherForecast)
@@ -64,6 +67,11 @@ namespace TennisBookings.Web.Pages
                         break;
                 }
             }
+        }
+
+        private class Features
+        {
+            public bool EnableRandomGreeting { get; set; }
         }
     }
 }
