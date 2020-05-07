@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using TennisBookings.Web.Configuration;
@@ -11,7 +12,8 @@ namespace TennisBookings.Web.Pages
         private readonly IWeatherForecaster _weatherForecaster;
         private readonly IHomePageGreetingService _greetingService;
         private readonly FeaturesConfiguration _featuresConfiguration;
-        
+        private readonly IConfiguration _configuration;
+
         public string Greeting { get; private set; }
 
         public bool ShowGreeting => !string.IsNullOrEmpty(Greeting);
@@ -22,15 +24,18 @@ namespace TennisBookings.Web.Pages
         public IndexModel(
             IWeatherForecaster weatherForecaster, 
             IOptions<FeaturesConfiguration> options, 
-            IHomePageGreetingService greetingService)
+            IHomePageGreetingService greetingService, IConfiguration configuration)
         {
             _weatherForecaster = weatherForecaster;
             _greetingService = greetingService;
             _featuresConfiguration = options.Value;
+            _configuration = configuration;    
         }
 
         public async Task OnGet()
         {
+            var x = _configuration.GetValue<bool>("Features:HomePage:EableGreeting"); //accessing the configuration at runtime
+            
             Greeting = _greetingService.GetRandomHomePageGreeting();            
 
             if (_featuresConfiguration.EnableWeatherForecast)
