@@ -34,7 +34,10 @@ namespace TennisBookings.Web.Pages
 
         public async Task OnGet()
         {
-            var x = _configuration.GetValue<bool>("Features:HomePage:EableGreeting"); //accessing the configuration at runtime
+            var x = _configuration.GetValue<bool>("Features:HomePage:EnableGreeting"); //accessing the configuration at runtime
+
+            var homePageFeatures = _configuration.GetSection("Features:HomePage");
+            homePageFeatures.GetValue<bool>("EnableGreeting");
             
             Greeting = _greetingService.GetRandomHomePageGreeting();            
 
