@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.Web.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifetimeDemonstration.Web", "LifetimeDemonstration.Web\LifetimeDemonstration.Web.csproj", "{048F6605-0981-4C75-9B85-C2103BF8F39B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET Core - Scott Allen", "ASP.NET Core - Scott Allen", "{BF54E19A-2B66-459D-A4E6-9929EFD05BDA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-ASP.NET Core - Scott Allen", "1-ASP.NET Core - Scott Allen", "{BF54E19A-2B66-459D-A4E6-9929EFD05BDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
