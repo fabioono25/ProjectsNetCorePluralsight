@@ -65,5 +65,10 @@ namespace OdeToFood.Data
             //cache
             return context.Restaurants.Count();
         }
+
+        public IEnumerable<Restaurant> GetAll()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -75,5 +75,10 @@ namespace OdeToFood.Data
         {
             return restaurants.Count;
         }
+
+        public IEnumerable<Restaurant> GetAll()
+        {
+            return restaurants;
+        }
     }
 }
