@@ -18,9 +18,11 @@ namespace OdeToFood.Pages.Restaurants
         private readonly IRestaurantData restaurantData;
         private readonly ILogger<ListModel> logger;
 
+        //input and output model
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; } //another way to model binding
 
+        //output model
         public string Message { get; set; }
         public IEnumerable<Restaurant> Restaurants { get; set; }
 
@@ -32,6 +34,7 @@ namespace OdeToFood.Pages.Restaurants
             this.logger = logger;
         }
 
+        //public void OnGet(string searchTerm) -- using input model
         public void OnGet()
         {
             logger.LogInformation("logging information");
