@@ -66,6 +66,8 @@ namespace OdeToFood
             //app.UseCookiePolicy();
 
             app.UseRouting();
+            //app.UseAuthentication();
+            //app.UseSignalR();
 
             app.UseAuthorization();
 
