@@ -10,7 +10,7 @@ namespace TennisBookings.Web.Data
         public string Forename { get; set; }
 
         public string Surname { get; set; }
-        
+
         public DateTime JoinDate { get; set; }
 
         public ICollection<CourtBooking> CourtBookings { get; set; }

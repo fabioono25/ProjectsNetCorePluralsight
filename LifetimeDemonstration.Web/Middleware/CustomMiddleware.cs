@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using LifetimeDemonstration.Web.Services;
+﻿using LifetimeDemonstration.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace LifetimeDemonstration.Web.Middleware
 {

@@ -114,7 +114,7 @@ namespace CourseLibrary.API
 
             // register PropertyMappingService
             services.AddTransient<IPropertyMappingService, PropertyMappingService>();
-            
+
             // register PropertyCheckerService
             services.AddTransient<IPropertyCheckerService, PropertyCheckerService>();
 
@@ -126,7 +126,7 @@ namespace CourseLibrary.API
             {
                 options.UseSqlServer(
                     @"Server=(localdb)\mssqllocaldb;Database=CourseLibraryDB;Trusted_Connection=True;");
-            }); 
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -135,7 +135,8 @@ namespace CourseLibrary.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }else
+            }
+            else
             {
                 app.UseExceptionHandler(appBuilder =>
                 {

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Helpers
 {
@@ -67,7 +66,7 @@ namespace CourseLibrary.API.Helpers
 
                 // Run through the property names 
                 // so the orderby clauses are applied in the correct order
-                foreach (var destinationProperty in 
+                foreach (var destinationProperty in
                     propertyMappingValue.DestinationProperties)
                 {
                     // revert sort order if necessary
@@ -76,15 +75,14 @@ namespace CourseLibrary.API.Helpers
                         orderDescending = !orderDescending;
                     }
 
-                    orderByString = orderByString + 
-                        (string.IsNullOrWhiteSpace(orderByString) ? string.Empty : ", ") 
-                        + destinationProperty 
-                        + (orderDescending ? " descending" : " ascending");                     
+                    orderByString = orderByString +
+                        (string.IsNullOrWhiteSpace(orderByString) ? string.Empty : ", ")
+                        + destinationProperty
+                        + (orderDescending ? " descending" : " ascending");
                 }
-            } 
+            }
 
             return source.OrderBy(orderByString);
         }
     }
 }
- 

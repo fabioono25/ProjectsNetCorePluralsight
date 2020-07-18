@@ -8,7 +8,7 @@ namespace TennisBookings.Web.Core.DependencyInjection
         public static IServiceCollection AddStaffServices(this IServiceCollection services)
         {
             services.AddSingleton<IStaffRolesOptionsService, StaffRolesOptionsService>();
-            
+
             return services;
         }
     }

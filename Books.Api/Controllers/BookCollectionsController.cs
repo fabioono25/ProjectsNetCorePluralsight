@@ -21,7 +21,7 @@ namespace Books.Api.Controllers
         public BookCollectionsController(IBooksRepository booksRepository,
             IMapper mapper)
         {
-            _booksRepository = booksRepository 
+            _booksRepository = booksRepository
                 ?? throw new ArgumentNullException(nameof(booksRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
@@ -40,7 +40,7 @@ namespace Books.Api.Controllers
 
             return Ok(bookEntities);
         }
-        
+
 
         [HttpPost]
         public async Task<IActionResult> CreateBookCollection(

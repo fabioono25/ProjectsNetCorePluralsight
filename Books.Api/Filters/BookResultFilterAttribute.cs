@@ -1,10 +1,5 @@
-﻿using AutoMapper;
-using AutoMapper.Execution;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Books.Api.Filters
@@ -21,7 +16,7 @@ namespace Books.Api.Filters
         //    _mapper = mapper;
         //}
 
-        public override async Task OnResultExecutionAsync(ResultExecutingContext context, 
+        public override async Task OnResultExecutionAsync(ResultExecutingContext context,
             ResultExecutionDelegate next)
         {
             var resultFromAction = context.Result as ObjectResult;

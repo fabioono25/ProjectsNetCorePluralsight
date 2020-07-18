@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using LifetimeDemonstration.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using LifetimeDemonstration.Web.Services;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace LifetimeDemonstration.Web.Controllers
 {
@@ -31,7 +31,7 @@ namespace LifetimeDemonstration.Web.Controllers
                 HttpContext.Items["MiddlewareGuid"].ToString(),
                 logMessage
             };
-            
+
             return Ok(messages);
         }
     }

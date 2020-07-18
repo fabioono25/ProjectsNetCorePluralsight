@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using TennisBookings.Web.Controllers;
 using TennisBookings.Web.Services;
 using TennisBookings.Web.ViewModels;
 using Xunit;
-using Moq;
 
 namespace TennisBookings.Web.Tests.Controllers
 {
@@ -35,7 +35,7 @@ namespace TennisBookings.Web.Tests.Controllers
             {
                 WeatherCondition = WeatherCondition.Rain
             });
-            
+
             var sut = new HomeController(mockWeatherForecaster.Object);
 
             var result = sut.Index();

@@ -1,19 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
-using Autofac.Extensions.DependencyInjection;
+﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 using TennisBookings.Web.Data;
 
 namespace TennisBookings.Web
 {
     public class Program
     {
-        public static async Task Main (string[] args)
+        public static async Task Main(string[] args)
         {
             var webHost = CreateWebHostBuilder(args).Build();
 
@@ -23,7 +23,7 @@ namespace TennisBookings.Web
 
                 var hostingEnvironment = serviceProvider.GetRequiredService<IHostingEnvironment>();
                 var appLifetime = serviceProvider.GetRequiredService<IApplicationLifetime>();
-                
+
                 if (hostingEnvironment.IsDevelopment())
                 {
                     var ctx = serviceProvider.GetRequiredService<TennisBookingDbContext>();

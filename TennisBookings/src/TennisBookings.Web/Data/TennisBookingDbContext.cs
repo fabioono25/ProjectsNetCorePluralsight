@@ -16,7 +16,7 @@ namespace TennisBookings.Web.Data
         public DbSet<CourtBooking> CourtBookings { get; set; }
 
         public DbSet<Member> Members { get; set; }
-        
+
         public DbSet<CourtMaintenanceSchedule> CourtMaintenance { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,7 +32,7 @@ namespace TennisBookings.Web.Data
                 new Court { Id = 3, Name = "Court 3", Type = CourtType.Outdoor },
                 new Court { Id = 4, Name = "Court 4", Type = CourtType.Outdoor },
                 new Court { Id = 5, Name = "Court 5", Type = CourtType.Outdoor });
-         
+
             modelBuilder.Entity<CourtMaintenanceSchedule>().HasData(
                 new CourtMaintenanceSchedule
                 {
@@ -61,7 +61,7 @@ namespace TennisBookings.Web.Data
                     EndDate = new DateTime(2019, 02, 08, 09, 00, 00),
                     CourtId = 2
                 });
-       
+
             base.OnModelCreating(modelBuilder);
         }
     }

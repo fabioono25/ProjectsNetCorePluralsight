@@ -34,7 +34,7 @@ namespace Library.API.Services
             }
 
             return await _context.Authors
-                .FirstOrDefaultAsync(a => a.Id == authorId); 
+                .FirstOrDefaultAsync(a => a.Id == authorId);
         }
 
         public void UpdateAuthor(Author author)

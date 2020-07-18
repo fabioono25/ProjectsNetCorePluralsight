@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Library.API.Models;
 using Library.API.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace Library.API.Controllers
 {
@@ -69,7 +69,7 @@ namespace Library.API.Controllers
         [Consumes("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, 
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity,
             Type = typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary))]
         public async Task<ActionResult<Author>> UpdateAuthor(
             Guid authorId,
@@ -88,7 +88,7 @@ namespace Library.API.Controllers
             await _authorsRepository.SaveChangesAsync();
 
             // return the author
-            return Ok(_mapper.Map<Author>(authorFromRepo)); 
+            return Ok(_mapper.Map<Author>(authorFromRepo));
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Library.API.Controllers
         [Consumes("application/json-patch+json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, 
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity,
             Type = typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary))]
         public async Task<ActionResult<Author>> UpdateAuthor(
             Guid authorId,

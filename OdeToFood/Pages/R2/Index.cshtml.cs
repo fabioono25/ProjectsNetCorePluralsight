@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using OdeToFood.Core;
-using OdeToFood.Data;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OdeToFood.Pages.R2
 {
@@ -19,7 +15,7 @@ namespace OdeToFood.Pages.R2
             _context = context;
         }
 
-        public IList<Restaurant> Restaurant { get;set; }
+        public IList<Restaurant> Restaurant { get; set; }
 
         public async Task OnGetAsync()
         {

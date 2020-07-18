@@ -13,7 +13,7 @@ namespace Library.API.Controllers
     [Route("api/authors/{authorId}/books")]
     [ApiController]
     public class BooksController : ControllerBase
-    { 
+    {
         private readonly IBookRepository _bookRepository;
         private readonly IAuthorRepository _authorRepository;
         private readonly IMapper _mapper;
@@ -37,14 +37,14 @@ namespace Library.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks(
-        Guid authorId )
+        Guid authorId)
         {
             if (!await _authorRepository.AuthorExistsAsync(authorId))
             {
                 return NotFound();
             }
 
-            var booksFromRepo = await _bookRepository.GetBooksAsync(authorId); 
+            var booksFromRepo = await _bookRepository.GetBooksAsync(authorId);
             return Ok(_mapper.Map<IEnumerable<Book>>(booksFromRepo));
         }
 
@@ -63,7 +63,7 @@ namespace Library.API.Controllers
             Guid authorId,
             Guid bookId)
         {
-            if (! await _authorRepository.AuthorExistsAsync(authorId))
+            if (!await _authorRepository.AuthorExistsAsync(authorId))
             {
                 return NotFound();
             }
@@ -89,7 +89,7 @@ namespace Library.API.Controllers
         [Consumes("application/json")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, 
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity,
             Type = typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary))]
         public async Task<ActionResult<Book>> CreateBook(
             Guid authorId,

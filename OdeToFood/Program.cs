@@ -14,7 +14,7 @@ namespace OdeToFood
 
             //execute migrations here
             MigrateDatabase(host);
-            
+
             host.Run();
         }
 

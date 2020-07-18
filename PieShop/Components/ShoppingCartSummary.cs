@@ -4,7 +4,7 @@ using PieShop.ViewModels;
 
 namespace PieShop.Components
 {
-    public class ShoppingCartSummary: ViewComponent
+    public class ShoppingCartSummary : ViewComponent
     {
         private readonly ShoppingCart _shoppingCart;
 

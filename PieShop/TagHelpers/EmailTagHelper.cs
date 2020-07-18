@@ -2,7 +2,7 @@
 
 namespace PieShop.TagHelpers
 {
-    public class EmailTagHelper: TagHelper
+    public class EmailTagHelper : TagHelper
     {
         public string Address { get; set; }
         public string Content { get; set; }

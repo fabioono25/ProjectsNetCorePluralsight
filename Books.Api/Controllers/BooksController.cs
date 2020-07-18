@@ -33,7 +33,7 @@ namespace Books.Api.Controllers
 
         [HttpGet]
         [BookWithCoversResultFilterAttribute]
-        [Route("{id}", Name="GetBook")]
+        [Route("{id}", Name = "GetBook")]
         public async Task<IActionResult> GetBook(Guid id)
         {
             var bookEntity = await _booksRepository.GetBookAsync(id);

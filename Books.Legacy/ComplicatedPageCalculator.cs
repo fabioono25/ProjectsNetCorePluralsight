@@ -1,10 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
+﻿using System.Diagnostics;
 
 namespace Books.Legacy
 {
-    public class ComplicatedPageCalculator 
+    public class ComplicatedPageCalculator
     {
         /// <summary>
         /// Full CPU load for 5 seconds
@@ -18,10 +16,10 @@ namespace Books.Legacy
                 if (watch.ElapsedMilliseconds > 5000)
                 {
                     break;
-                } 
+                }
             }
 
             return 42;
-        } 
+        }
     }
 }

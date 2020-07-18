@@ -22,5 +22,5 @@ namespace Library.API.Models
         /// The last name of the author
         /// </summary>         
         public string LastName { get; set; }
-    }    
+    }
 }

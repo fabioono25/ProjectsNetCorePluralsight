@@ -45,7 +45,7 @@ namespace StarChartTests
             var nameProperty = model.GetProperty("Name");
             Assert.True(nameProperty != null, "A `public` property `Name` was not found in the `CelestialObject` class.");
             Assert.True(nameProperty.PropertyType == typeof(string), "A `public` property `Name` was found in `CelestialObject`, but was not of type `string`.");
-            Assert.True(nameProperty.GetCustomAttributes(typeof(RequiredAttribute),false).Any(), "A `public` property `Name` was found in `CelestialObject`, but does not have the `Required` attribute.");
+            Assert.True(nameProperty.GetCustomAttributes(typeof(RequiredAttribute), false).Any(), "A `public` property `Name` was found in `CelestialObject`, but does not have the `Required` attribute.");
         }
 
         [Fact(DisplayName = "Add OrbitedObjectId Property @add-orbitedobject-property")]

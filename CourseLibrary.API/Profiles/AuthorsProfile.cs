@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
 using CourseLibrary.API.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Profiles
 {
@@ -13,10 +9,10 @@ namespace CourseLibrary.API.Profiles
         {
             CreateMap<Entities.Author, Models.AuthorDto>()
                 .ForMember(
-                    dest => dest.Name, 
+                    dest => dest.Name,
                     opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
                 .ForMember(
-                    dest => dest.Age, 
+                    dest => dest.Age,
                     opt => opt.MapFrom(src => src.DateOfBirth.GetCurrentAge(src.DateOfDeath)));
 
             CreateMap<Models.AuthorForCreationDto, Entities.Author>();

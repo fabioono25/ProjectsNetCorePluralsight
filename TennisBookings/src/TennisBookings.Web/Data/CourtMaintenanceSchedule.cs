@@ -7,7 +7,7 @@ namespace TennisBookings.Web.Data
         public int Id { get; set; }
 
         public string WorkTitle { get; set; }
-        
+
         public bool CourtIsClosed { get; set; }
 
         public DateTime StartDate { get; set; }

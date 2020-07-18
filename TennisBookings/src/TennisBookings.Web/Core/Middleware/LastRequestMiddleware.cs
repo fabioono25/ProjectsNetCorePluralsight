@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using System;
+using System.Threading.Tasks;
 using TennisBookings.Web.Data;
 
 namespace TennisBookings.Web.Core.Middleware

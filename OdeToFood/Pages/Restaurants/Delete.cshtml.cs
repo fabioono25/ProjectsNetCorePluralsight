@@ -18,7 +18,7 @@ namespace OdeToFood.Pages.Restaurants
         public IActionResult OnGet(int restaurantId)
         {
             Restaurant = restaurantData.GetById(restaurantId);
-            
+
             if (Restaurant == null)
             {
                 return RedirectToPage("./NotFound");

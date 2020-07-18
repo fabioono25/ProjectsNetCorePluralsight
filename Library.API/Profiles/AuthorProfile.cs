@@ -7,7 +7,7 @@ namespace Library.API.Profiles
         public AuthorProfile()
         {
             CreateMap<Entities.Author, Models.Author>();
-            
+
             CreateMap<Models.AuthorForUpdate, Entities.Author>();
         }
     }

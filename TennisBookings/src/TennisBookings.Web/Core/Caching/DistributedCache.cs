@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 
 namespace TennisBookings.Web.Core.Caching
 {
@@ -38,7 +38,7 @@ namespace TennisBookings.Web.Core.Caching
         public async Task SetAsync(string key, T item, int minutesToCache)
         {
             var cacheEntryOptions = new DistributedCacheEntryOptions
-                { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(minutesToCache) };
+            { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(minutesToCache) };
 
             var serialisedItemToCache = SerialiseForCaching(item);
 

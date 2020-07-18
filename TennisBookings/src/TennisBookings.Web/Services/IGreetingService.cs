@@ -6,5 +6,5 @@ namespace TennisBookings.Web.Services
     {
         [Obsolete("Prefer the GetRandomGreeting method defined in IGreetingService")]
         string GetRandomHomePageGreeting();
-    }    
+    }
 }

@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.SignalR.Client;
+﻿using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ConsoleClient
 {
@@ -15,7 +15,7 @@ namespace ConsoleClient
                 .AddMessagePackProtocol()
                 .Build();
 
-            connection.On<Order>("NewOrder", (order) => 
+            connection.On<Order>("NewOrder", (order) =>
                 Console.WriteLine($"Somebody ordered an {order.Product}"));
 
             connection.StartAsync().GetAwaiter().GetResult();

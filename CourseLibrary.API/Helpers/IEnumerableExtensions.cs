@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Helpers
 {
@@ -31,7 +29,7 @@ namespace CourseLibrary.API.Helpers
             {
                 // all public properties should be in the ExpandoObject
                 var propertyInfos = typeof(TSource)
-                        .GetProperties(BindingFlags.IgnoreCase 
+                        .GetProperties(BindingFlags.IgnoreCase
                         | BindingFlags.Public | BindingFlags.Instance);
 
                 propertyInfoList.AddRange(propertyInfos);
@@ -76,7 +74,7 @@ namespace CourseLibrary.API.Helpers
                 // Get the value of each property we have to return.  For that,
                 // we run through the list
                 foreach (var propertyInfo in propertyInfoList)
-                {  
+                {
                     // GetValue returns the value of the property on the source object
                     var propertyValue = propertyInfo.GetValue(sourceObject);
 

@@ -3,7 +3,7 @@ using OdeToFood.Data;
 
 namespace OdeToFood.Pages.ViewComponents
 {
-    public class RestaurantCountViewComponent: ViewComponent
+    public class RestaurantCountViewComponent : ViewComponent
     {
         private readonly IRestaurantData restaurantData;
 

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using OdeToFood.Core;
 using OdeToFood.Data;
+using System.Collections.Generic;
 
 namespace OdeToFood.Pages.Restaurants
 {
@@ -26,7 +22,7 @@ namespace OdeToFood.Pages.Restaurants
         public string Message { get; set; }
         public IEnumerable<Restaurant> Restaurants { get; set; }
 
-        public ListModel(IConfiguration configuration, IRestaurantData restaurantData, 
+        public ListModel(IConfiguration configuration, IRestaurantData restaurantData,
                          ILogger<ListModel> logger)
         {
             this.configuration = configuration;

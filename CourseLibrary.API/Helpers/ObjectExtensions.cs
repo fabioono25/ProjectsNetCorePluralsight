@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Helpers
 {
@@ -23,7 +21,7 @@ namespace CourseLibrary.API.Helpers
             {
                 // all public properties should be in the ExpandoObject 
                 var propertyInfos = typeof(TSource)
-                        .GetProperties(BindingFlags.IgnoreCase | 
+                        .GetProperties(BindingFlags.IgnoreCase |
                         BindingFlags.Public | BindingFlags.Instance);
 
                 foreach (var propertyInfo in propertyInfos)
@@ -53,7 +51,7 @@ namespace CourseLibrary.API.Helpers
                 // we need to include public and instance, b/c specifying a 
                 // binding flag overwrites the already-existing binding flags.
                 var propertyInfo = typeof(TSource)
-                    .GetProperty(propertyName, 
+                    .GetProperty(propertyName,
                     BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 
                 if (propertyInfo == null)

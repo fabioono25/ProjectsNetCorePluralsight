@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace TennisBookings.Web.Services
 {
@@ -14,7 +12,7 @@ namespace TennisBookings.Web.Services
     {
         DateTime CurrentUtcDateTime { get; }
     }
-      
+
     public class TimeService : ITimeService, IUtcTimeService
     {
         private readonly ILogger<TimeService> _logger;

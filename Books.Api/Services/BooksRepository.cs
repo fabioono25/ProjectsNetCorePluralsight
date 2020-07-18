@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using Books.Api.Contexts;
+﻿using Books.Api.Contexts;
 using Books.Api.Entities;
 using Books.Api.ExternalModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Books.Api.Services
 {
@@ -228,7 +228,7 @@ namespace Books.Api.Services
                 return bookCover;
             }
 
-           _cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Cancel();
 
             return null;
         }

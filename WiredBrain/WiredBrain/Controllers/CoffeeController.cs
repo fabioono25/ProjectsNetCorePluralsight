@@ -1,12 +1,7 @@
-﻿using System;
-using System.Net.WebSockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using WiredBrain.Helpers;
+using System.Net.WebSockets;
+using System.Threading.Tasks;
 using WiredBrain.Hubs;
 using WiredBrain.Models;
 
@@ -24,7 +19,7 @@ namespace WiredBrain.Controllers
 
         [HttpPost]
         public async Task<IActionResult> OrderCoffee(
-            [FromBody]Order order)
+            [FromBody] Order order)
         {
             await coffeeHub.Clients.All.SendAsync("NewOrder", order);
             //Save order somewhere and get order id

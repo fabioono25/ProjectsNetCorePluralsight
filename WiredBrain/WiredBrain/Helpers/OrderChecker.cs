@@ -19,7 +19,7 @@ namespace WiredBrain.Helpers
         {
             if (random.Next(1, 5) == 4)
             {
-                if (Status.Length -1 > index)
+                if (Status.Length - 1 > index)
                 {
                     index++;
                     var result = new CheckResult
@@ -34,7 +34,7 @@ namespace WiredBrain.Helpers
                 }
             }
 
-            return new CheckResult {New = false};
+            return new CheckResult { New = false };
         }
     }
 

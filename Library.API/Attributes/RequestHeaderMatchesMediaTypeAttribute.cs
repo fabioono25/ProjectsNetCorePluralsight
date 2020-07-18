@@ -14,7 +14,7 @@ namespace Library.API.Attributes
         public RequestHeaderMatchesMediaTypeAttribute(string requestHeaderToMatch,
             string mediaType, params string[] otherMediaTypes)
         {
-            _requestHeaderToMatch = requestHeaderToMatch 
+            _requestHeaderToMatch = requestHeaderToMatch
                 ?? throw new ArgumentNullException(nameof(requestHeaderToMatch));
 
             if (mediaType == null)
@@ -25,7 +25,7 @@ namespace Library.API.Attributes
             // check if the inputted media types are valid media types
             // and add them to the _mediaTypes collection                     
 
-            if (MediaTypeHeaderValue.TryParse(mediaType, 
+            if (MediaTypeHeaderValue.TryParse(mediaType,
                 out MediaTypeHeaderValue parsedMediaType))
             {
                 _mediaTypes.Add(parsedMediaType);
@@ -46,7 +46,7 @@ namespace Library.API.Attributes
                 {
                     throw new ArgumentException(nameof(otherMediaTypes));
                 }
-            }             
+            }
         }
 
         public int Order
@@ -74,7 +74,7 @@ namespace Library.API.Attributes
                 if (parsedRequestMediaType.Equals(parsedMediaType))
                 {
                     return true;
-                }               
+                }
             }
             return false;
         }

@@ -7,7 +7,7 @@ namespace StarChart.Controllers
 {
     [Route("")]
     [ApiController]
-    public class CelestialObjectController: ControllerBase
+    public class CelestialObjectController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
@@ -25,7 +25,7 @@ namespace StarChart.Controllers
                 return NotFound();
 
             celestialObject.Satellites = _context.CelestialObjects.Where(s => s.Id.Equals(id)).ToList();
-            
+
             return Ok(celestialObject);
         }
 
@@ -41,7 +41,7 @@ namespace StarChart.Controllers
             {
                 celestialObject.Satellites = _context.CelestialObjects.Where(s => s.Name.Equals(name)).ToList();
             }
-            
+
             return Ok(celestialObjects);
         }
 

@@ -1,5 +1,5 @@
-﻿using PieShop.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using PieShop.Models;
 using System.Linq;
 
 namespace PieShop.Components
