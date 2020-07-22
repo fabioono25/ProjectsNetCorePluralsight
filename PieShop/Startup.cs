@@ -37,7 +37,7 @@ namespace PieShop
             //})
             //.AddEntityFrameworkStores<AppDbContext>();
 
-            //services
+            //services  
             services.AddSingleton<ILog, Log>();
             //            services.AddSingleton<ILogger, LoggerFactory>();
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
