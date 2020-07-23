@@ -29,7 +29,7 @@ namespace PieShop.Controllers
             _logger.LogError("adsasdad");
             _log.LogException("an error ocurred");
 
-            ViewBag.CurrentCategory = "Cheese cakes";
+            //ViewBag.CurrentCategory = "Cheese cakes";
 
             IEnumerable<Pie> pies;
             string currentCategory = string.Empty;
