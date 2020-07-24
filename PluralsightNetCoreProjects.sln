@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarChart", "StarChartApiNe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarChartTests", "StarChartApiNetCore\StarChartTests\StarChartTests.csproj", "{517A6624-8700-4E69-B13C-C4AE045DB06F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WishList", "WishListAspNetCore\WishList\WishList.csproj", "{F62B8CEE-D921-4ED4-84E7-6B1EC285500E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WishListTests", "WishListAspNetCore\WishListTests\WishListTests.csproj", "{B811A9AB-FB95-4FDC-9FF1-4A974CB2D432}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood", "OdeToFood\OdeToFood.csproj", "{FB181C3C-147C-459A-B90D-6D26B4D3FFB0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood.Core", "OdeToFood.Core\OdeToFood.Core.csproj", "{D4F94B9A-0248-4401-BA7F-F3986F46F867}"
@@ -45,6 +41,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-ASP.NET Core - Scott Alle
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-ASP.NET Core MVC - Gill Cleeren", "2-ASP.NET Core MVC - Gill Cleeren", "{4E5D67DA-E2A6-4609-9130-D23A1F054308}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Wishlist Application - Eric J Fisher", "3 - Wishlist Application - Eric J Fisher", "{DA4CB9E5-9272-4E51-B97C-7FD932615A69}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WishList", "3- Wishlist Application\WishList\WishList.csproj", "{C6B769BE-540E-4E9A-AEE5-93D89E351CCC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WishListTests", "3- Wishlist Application\WishListTests\WishListTests.csproj", "{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,14 +61,6 @@ Global
 		{517A6624-8700-4E69-B13C-C4AE045DB06F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{517A6624-8700-4E69-B13C-C4AE045DB06F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{517A6624-8700-4E69-B13C-C4AE045DB06F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F62B8CEE-D921-4ED4-84E7-6B1EC285500E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F62B8CEE-D921-4ED4-84E7-6B1EC285500E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F62B8CEE-D921-4ED4-84E7-6B1EC285500E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F62B8CEE-D921-4ED4-84E7-6B1EC285500E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B811A9AB-FB95-4FDC-9FF1-4A974CB2D432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B811A9AB-FB95-4FDC-9FF1-4A974CB2D432}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B811A9AB-FB95-4FDC-9FF1-4A974CB2D432}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B811A9AB-FB95-4FDC-9FF1-4A974CB2D432}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB181C3C-147C-459A-B90D-6D26B4D3FFB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB181C3C-147C-459A-B90D-6D26B4D3FFB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB181C3C-147C-459A-B90D-6D26B4D3FFB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -127,6 +121,14 @@ Global
 		{048F6605-0981-4C75-9B85-C2103BF8F39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{048F6605-0981-4C75-9B85-C2103BF8F39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{048F6605-0981-4C75-9B85-C2103BF8F39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6B769BE-540E-4E9A-AEE5-93D89E351CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6B769BE-540E-4E9A-AEE5-93D89E351CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6B769BE-540E-4E9A-AEE5-93D89E351CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6B769BE-540E-4E9A-AEE5-93D89E351CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,6 +138,8 @@ Global
 		{D4F94B9A-0248-4401-BA7F-F3986F46F867} = {BF54E19A-2B66-459D-A4E6-9929EFD05BDA}
 		{19FD2F1E-B65B-4EA5-A2F9-EAA5B1F2A257} = {BF54E19A-2B66-459D-A4E6-9929EFD05BDA}
 		{5A7A6556-B023-4BCC-B5AF-AA2B8D251BE3} = {4E5D67DA-E2A6-4609-9130-D23A1F054308}
+		{C6B769BE-540E-4E9A-AEE5-93D89E351CCC} = {DA4CB9E5-9272-4E51-B97C-7FD932615A69}
+		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF} = {DA4CB9E5-9272-4E51-B97C-7FD932615A69}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6275B6F8-6A01-4ED4-886A-4970F52EC774}
