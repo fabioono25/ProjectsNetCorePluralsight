@@ -14,6 +14,11 @@ namespace TennisBookings.Web.Services
             _weatherApiClient = weatherApiClient;
         }
 
+        public object GetCurrentWeather()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task<CurrentWeatherResult> GetCurrentWeatherAsync()
         {
             var currentWeather = await _weatherApiClient.GetWeatherForecastAsync();
@@ -36,6 +41,11 @@ namespace TennisBookings.Web.Services
         {
             _weatherForecaster = weatherForecaster;
             _logger = logger;
+        }
+
+        public object GetCurrentWeather()
+        {
+            throw new System.NotImplementedException();
         }
 
         public async Task<CurrentWeatherResult> GetCurrentWeatherAsync()

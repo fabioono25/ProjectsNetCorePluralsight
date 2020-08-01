@@ -17,6 +17,11 @@ namespace TennisBookings.Web.Services
             _cache = cache;
         }
 
+        public object GetCurrentWeather()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<CurrentWeatherResult> GetCurrentWeatherAsync()
         {
             var cacheKey = $"current_weather_{DateTime.UtcNow:yyyy_MM_dd}";
