@@ -29,7 +29,7 @@ namespace PieShop.Models
                 {
                     Amount = shoppingCartItem.Amount,
                     PieId = shoppingCartItem.Pie.PieId,
-                    OrderId = order.OrderId,
+                    OrderId = order.OrderId, //error, because orderId was not persisted in the database
                     Price = shoppingCartItem.Pie.Price
                 };
 

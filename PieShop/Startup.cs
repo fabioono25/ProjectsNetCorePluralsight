@@ -73,9 +73,11 @@ namespace PieShop
             app.UseStaticFiles();
             app.UseSession(); //add session before routing
             app.UseAuthentication(); //add support to Identity
-            app.UseAuthorization();
 
             app.UseRouting();
+
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
