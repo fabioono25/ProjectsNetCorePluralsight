@@ -47,6 +47,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WishList", "3- Wishlist App
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WishListTests", "3- Wishlist Application\WishListTests\WishListTests.csproj", "{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4- Bootcamp API", "4- Bootcamp API", "{48412187-84DF-4587-8B2F-51B67D87813A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreCodeCamp", "4- Bootcamp API\CoreCodeCamp.csproj", "{D24A0D3E-D41D-4D23-A4C5-078C8D0BEA69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +133,10 @@ Global
 		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D24A0D3E-D41D-4D23-A4C5-078C8D0BEA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D24A0D3E-D41D-4D23-A4C5-078C8D0BEA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D24A0D3E-D41D-4D23-A4C5-078C8D0BEA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D24A0D3E-D41D-4D23-A4C5-078C8D0BEA69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +148,7 @@ Global
 		{5A7A6556-B023-4BCC-B5AF-AA2B8D251BE3} = {4E5D67DA-E2A6-4609-9130-D23A1F054308}
 		{C6B769BE-540E-4E9A-AEE5-93D89E351CCC} = {DA4CB9E5-9272-4E51-B97C-7FD932615A69}
 		{3CA37DC1-AD07-48D3-9AEA-65979F56F7CF} = {DA4CB9E5-9272-4E51-B97C-7FD932615A69}
+		{D24A0D3E-D41D-4D23-A4C5-078C8D0BEA69} = {48412187-84DF-4587-8B2F-51B67D87813A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6275B6F8-6A01-4ED4-886A-4970F52EC774}
