@@ -14,7 +14,8 @@ namespace StarChart
         {
             services.AddMvc(); //support to MVC middleware
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("StarChart")); //Use Context in memory
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("StarChart")); //Use Context in memory
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("StarChartDb"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
