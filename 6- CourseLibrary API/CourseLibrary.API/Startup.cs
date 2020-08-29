@@ -138,6 +138,7 @@ namespace CourseLibrary.API
             }
             else
             {
+                //change to DEBUG -> ENVIRONMENT to Production, in order to test 
                 app.UseExceptionHandler(appBuilder =>
                 {
                     appBuilder.Run(async context =>

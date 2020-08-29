@@ -194,6 +194,12 @@ namespace CourseLibrary.API.Services
                     || a.LastName.Contains(searchQuery));
             }
 
+            //paging: old way
+            //var pagedResult = collection.Skip(authorsResourceParameters.PageSize * (authorsResourceParameters.PageNumber - 1))
+            //                    .Take(authorsResourceParameters.PageSize)
+            //                    .ToList();
+
+
             //if (!string.IsNullOrEmpty(authorsResourceParameters.OrderBy))
             //{
             //    if (authorsResourceParameters.OrderBy.ToLowerInvariant() == "name")
