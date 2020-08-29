@@ -199,7 +199,7 @@ namespace CourseLibrary.API.Services
             //                    .Take(authorsResourceParameters.PageSize)
             //                    .ToList();
 
-
+            //ordering: old way
             //if (!string.IsNullOrEmpty(authorsResourceParameters.OrderBy))
             //{
             //    if (authorsResourceParameters.OrderBy.ToLowerInvariant() == "name")
