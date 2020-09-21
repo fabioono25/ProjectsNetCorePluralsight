@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using TennisBookings.Web.Configuration;
 using TennisBookings.Web.Services;
 
@@ -20,14 +21,17 @@ namespace TennisBookings.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient<IWeatherForecaster, WeatherForecaster>();
+            services.AddTransient<IWeatherForecaster, WeatherForecaster>();
+            //services.AddTransient<IWeatherForecaster, AmazingWeatherForecaster>(); //it will consider the last registration (TryAddSingleton)
+            services.Replace(ServiceDescriptor.Singleton<IWeatherForecaster, AmazingWeatherForecaster>()); // remove previous registration - RemoveAll
 
             //using IOptions to register strongly-typed object
             services.Configure<FeaturesConfiguration>(Configuration.GetSection("Features"));
 
-            var serviceDescriptor1 = ServiceDescriptor.Transient<IWeatherForecaster, WeatherForecaster>();
+            // using Service Descrptors
+            //var serviceDescriptor1 = ServiceDescriptor.Transient<IWeatherForecaster, WeatherForecaster>();
 
-            services.Add(serviceDescriptor1);
+            //services.Add(serviceDescriptor1);
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
