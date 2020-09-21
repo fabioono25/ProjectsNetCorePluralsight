@@ -61,6 +61,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.Web", "7-Dep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.Web.Tests", "7-DependencyInjection\test\TennisBookings.Web.Tests\TennisBookings.Web.Tests.csproj", "{7296F6DE-44CF-4144-ABE6-B32110C72BEE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifetimeDemonstration.Web", "7-DependencyInjection\LifetimeDemonstration.Web\LifetimeDemonstration.Web.csproj", "{A5249E86-3146-4A15-A930-026F757E640D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +157,10 @@ Global
 		{7296F6DE-44CF-4144-ABE6-B32110C72BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7296F6DE-44CF-4144-ABE6-B32110C72BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7296F6DE-44CF-4144-ABE6-B32110C72BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5249E86-3146-4A15-A930-026F757E640D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5249E86-3146-4A15-A930-026F757E640D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5249E86-3146-4A15-A930-026F757E640D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5249E86-3146-4A15-A930-026F757E640D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -172,6 +178,7 @@ Global
 		{1626BC18-423C-40C2-AE98-7360EF6EFD50} = {7BB1092A-A6A8-4513-93B9-BAF95AA2E5BE}
 		{85AAF81E-E89A-4945-AF8D-45F4ED127F52} = {866F1B41-63B9-43A5-9671-4C35B1DDF350}
 		{7296F6DE-44CF-4144-ABE6-B32110C72BEE} = {866F1B41-63B9-43A5-9671-4C35B1DDF350}
+		{A5249E86-3146-4A15-A930-026F757E640D} = {866F1B41-63B9-43A5-9671-4C35B1DDF350}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6275B6F8-6A01-4ED4-886A-4970F52EC774}
