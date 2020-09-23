@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TennisBookings.Web.Configuration;
 using TennisBookings.Web.Services;
+using System.Linq;
+using Microsoft.Extensions.Options;
 
 namespace TennisBookings.Web
 {
@@ -30,7 +32,7 @@ namespace TennisBookings.Web
 
             // using Service Descrptors
             //var serviceDescriptor1 = ServiceDescriptor.Transient<IWeatherForecaster, WeatherForecaster>();
-
+            services.TryAddSingleton<IBookingConfiguration>(sp => sp.GetRequiredService<IOptions<BookingConfiguration>>().Value);
             //services.Add(serviceDescriptor1);
 
             services.AddMvc()
