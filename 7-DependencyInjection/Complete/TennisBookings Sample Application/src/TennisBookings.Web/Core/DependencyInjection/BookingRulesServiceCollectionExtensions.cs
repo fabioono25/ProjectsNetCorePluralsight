@@ -8,6 +8,13 @@ namespace TennisBookings.Web.Core.DependencyInjection
     {
         public static IServiceCollection AddBookingRules(this IServiceCollection services)
         {
+            // old way
+            //services.TryAddEnumerable(new ServiceDescriptor[]
+            //{
+            //    ServiceDescriptor.Singleton<ICourtBookingRule, ClubIsOpenRule>(),
+            //    ServiceDescriptor.Singleton<ICourtBookingRule, MaxBookingLengthRule>()
+            //});
+
             // Scrutor assembly scanning
             services.Scan(scan => scan
                 .FromAssemblyOf<ICourtBookingRule>()
