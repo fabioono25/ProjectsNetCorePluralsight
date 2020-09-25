@@ -65,6 +65,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Complete Application", "Com
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.Web", "7-DependencyInjection\Complete\TennisBookings Sample Application\src\TennisBookings.Web\TennisBookings.Web.csproj", "{45A5FC40-1C63-4725-89CE-D39EA6577317}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8-Configuration", "8-Configuration", "{214EE041-4AD0-4517-BE06-82D24F283B21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.Web", "8-Configuration\TennisBookings.Web\TennisBookings.Web.csproj", "{FB6FB801-C432-4173-B494-FF2BC91654D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherService.Api", "8-Configuration\WeatherService.Api\WeatherService.Api.csproj", "{60BC7398-3AEB-4186-AA48-9838BC22DDE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +169,14 @@ Global
 		{45A5FC40-1C63-4725-89CE-D39EA6577317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45A5FC40-1C63-4725-89CE-D39EA6577317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45A5FC40-1C63-4725-89CE-D39EA6577317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB6FB801-C432-4173-B494-FF2BC91654D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB6FB801-C432-4173-B494-FF2BC91654D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB6FB801-C432-4173-B494-FF2BC91654D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB6FB801-C432-4173-B494-FF2BC91654D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60BC7398-3AEB-4186-AA48-9838BC22DDE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BC7398-3AEB-4186-AA48-9838BC22DDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BC7398-3AEB-4186-AA48-9838BC22DDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BC7398-3AEB-4186-AA48-9838BC22DDE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,6 +197,8 @@ Global
 		{A5249E86-3146-4A15-A930-026F757E640D} = {866F1B41-63B9-43A5-9671-4C35B1DDF350}
 		{EC27676A-A60B-451F-A641-500CDED0F639} = {866F1B41-63B9-43A5-9671-4C35B1DDF350}
 		{45A5FC40-1C63-4725-89CE-D39EA6577317} = {EC27676A-A60B-451F-A641-500CDED0F639}
+		{FB6FB801-C432-4173-B494-FF2BC91654D9} = {214EE041-4AD0-4517-BE06-82D24F283B21}
+		{60BC7398-3AEB-4186-AA48-9838BC22DDE8} = {214EE041-4AD0-4517-BE06-82D24F283B21}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6275B6F8-6A01-4ED4-886A-4970F52EC774}
