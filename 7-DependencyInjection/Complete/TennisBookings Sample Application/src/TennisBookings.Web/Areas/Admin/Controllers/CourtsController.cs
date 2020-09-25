@@ -88,9 +88,10 @@ namespace TennisBookings.Web.Areas.Admin.Controllers
         }
 
         [Route("Maintenance/Upcoming")]
-        public async Task<ActionResult> UpcomingMaintenance()
+        public async Task<ActionResult> UpcomingMaintenance([FromServices] ICourtMaintenanceService courtMaintenanceService) //Action injection
         {
-            var maintenanceSchedules = await _courtMaintenanceService.GetUpcomingMaintenance();
+            var maintenanceSchedules = await courtMaintenanceService.GetUpcomingMaintenance();
+            //var maintenanceSchedules = await _courtMaintenanceService.GetUpcomingMaintenance();
 
             var maintenanceViewModels = maintenanceSchedules.Select(x => new CourtMaintenanceViewModel
             {
