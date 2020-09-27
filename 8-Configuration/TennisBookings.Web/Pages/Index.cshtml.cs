@@ -33,7 +33,8 @@ namespace TennisBookings.Web.Pages
                 Greeting = _greetingService.GetRandomGreeting();
             }
 
-            ShowWeatherForecast = homePageFeatures.GetValue<bool>("EnableWeatherForecast");
+            ShowWeatherForecast = homePageFeatures.GetValue<bool>("EnableWeatherForecast")
+                && _weatherForecaster.ForecastEnabled;
 
             if (ShowWeatherForecast)
             {
