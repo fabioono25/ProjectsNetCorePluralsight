@@ -18,10 +18,9 @@ namespace TennisBookings.Web.Core.DependencyInjection
             }
             else
             {
-                services.AddHttpClient<IWeatherForecaster, DisabledWeatherForecaster>();
+                services.TryAddSingleton<IWeatherForecaster, DisabledWeatherForecaster>();
             }
 
-            
             return services;
         }
     }
