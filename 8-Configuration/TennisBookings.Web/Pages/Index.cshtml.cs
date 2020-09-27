@@ -79,9 +79,9 @@ namespace TennisBookings.Web.Pages
                 }                
             }
 
-            //var productsResult = await _productsApiClient.GetProducts();
+            var productsResult = await _productsApiClient.GetProducts();
 
-            //Products = productsResult.Products;
+            Products = productsResult.Products;
         }
     }
 }

@@ -31,22 +31,11 @@ namespace TennisBookings.Web
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.Configure<HomePageConfiguration>(Configuration.GetSection("Features:HomePage"));
-            //services.AddOptions<HomePageConfiguration>()
-            //    .Bind(Configuration.GetSection("Features:HomePage"))
-            //    .Validate(c =>
-            //    {
-            //        if (c.EnableWeatherForecast && string.IsNullOrEmpty(c.ForecastSectionTitle))
-            //            return false;
 
-            //        return true;
-            //    }, "Section must be provided when the homepage weather forecast is enabled");
-            //    //.ValidateDataAnnotations();
-
-            // add a more advanced validation
             services.TryAddEnumerable(ServiceDescriptor.Singleton<IValidateOptions<HomePageConfiguration>, HomePageConfigurationValidation>());
             services.TryAddEnumerable(ServiceDescriptor.Singleton<IValidateOptions<ExternalServicesConfig>, ExternalServicesConfigurationValidation>());
 
-            services.AddHostedService<ValidateOptionsService>(); //eager validation (Kestrel will show) - laungh contacts as launchUrl
+            services.AddHostedService<ValidateOptionsService>();
 
             services.Configure<GreetingConfiguration>(Configuration.GetSection("Features:Greeting"));
 

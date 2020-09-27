@@ -41,7 +41,11 @@ namespace TennisBookings.Web.External
 
             try
             {
-                var response = await _httpClient.GetAsync(path);
+                var request = new HttpRequestMessage(HttpMethod.Get, path);
+                request.Headers.Add("ApiKey", _productsApiConfig.Get(ExternalServicesConfig.ProductsApi)
+                    .ApiKey);
+
+                var response = await _httpClient.SendAsync(request);
 
                 if (!response.IsSuccessStatusCode)
                 {

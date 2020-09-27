@@ -19,6 +19,8 @@ namespace TennisBookings.Web.Data
         
         public DbSet<CourtMaintenanceSchedule> CourtMaintenance { get; set; }
 
+        public DbSet<ConfigurationEntry> ConfigurationEntries { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Member>()
