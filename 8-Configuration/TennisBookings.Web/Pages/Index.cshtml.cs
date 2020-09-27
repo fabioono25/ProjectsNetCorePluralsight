@@ -26,19 +26,29 @@ namespace TennisBookings.Web.Pages
 
         public async Task OnGet()
         {
-            var homePageFeatures = _configuration.GetSection("Features:HomePage");
+            //var homePageFeatures = _configuration.GetSection("Features:HomePage");
 
-            if (_configuration.GetValue<bool>("EnableGreeting"))
+            //if (_configuration.GetValue<bool>("EnableGreeting"))
+            //{
+            //    Greeting = _greetingService.GetRandomGreeting();
+            //}
+            var features = new Features();
+            _configuration.Bind("Features:HomePage", features);
+
+            if (features.EnableGreeting)
             {
                 Greeting = _greetingService.GetRandomGreeting();
             }
 
-            ShowWeatherForecast = homePageFeatures.GetValue<bool>("EnableWeatherForecast")
+            //ShowWeatherForecast = homePageFeatures.GetValue<bool>("EnableWeatherForecast")
+            //    && _weatherForecaster.ForecastEnabled;
+            ShowWeatherForecast = features.EnableWeatherForecast
                 && _weatherForecaster.ForecastEnabled;
 
             if (ShowWeatherForecast)
             {
-                var title = homePageFeatures["ForecastSectionTitle"];
+                //var title = homePageFeatures["ForecastSectionTitle"];
+                var title = features.ForecastSectionTitle;
                 ForecastSectionTitle = string.IsNullOrEmpty(title) ? "How's the weather?" : title;
 
                 var currentWeather = await _weatherForecaster.GetCurrentWeatherAsync();
@@ -65,6 +75,12 @@ namespace TennisBookings.Web.Pages
                     }
                 }
             }
+        }
+        private class Features
+        {
+            public bool EnableGreeting { get; set; }
+            public bool EnableWeatherForecast { get; set; }
+            public string ForecastSectionTitle { get; set; }
         }
     }
 }
