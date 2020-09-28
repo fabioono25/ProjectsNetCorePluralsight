@@ -73,6 +73,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherService.Api", "8-Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrandedProducts.Api", "8-Configuration\BrandedProducts.Api\BrandedProducts.Api.csproj", "{C3FB5644-C944-4259-ABEB-B8D3F33B17A4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9-Logging", "9-Logging", "{84CC5B10-4331-4F22-9952-2DDD1D676745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
