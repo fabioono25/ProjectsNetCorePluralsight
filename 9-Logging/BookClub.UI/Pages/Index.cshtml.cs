@@ -13,10 +13,9 @@ namespace BookClub.UI.Pages
         {
             _logger = logger;
         }
-
         public void OnGet()
         {
-            _logger.LogInformation("hello from the home page.");
+            _logger.LogInformation("Hello from the Home page.");
         }
     }
 }

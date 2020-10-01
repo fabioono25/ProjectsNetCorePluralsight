@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>64a55203-6024-41a2-9efd-914e7fb0dbd5</UserSecretsId>
   </PropertyGroup>
 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.6" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookClub.Entities\BookClub.Entities.csproj" />
+    <ProjectReference Include="..\BookClub.Logic\BookClub.Logic.csproj" />
   </ItemGroup>
 
 
