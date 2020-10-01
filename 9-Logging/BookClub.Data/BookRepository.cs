@@ -21,8 +21,19 @@ namespace BookClub.Data
 
         public List<Book> GetAllBooks()
         {
-            _logger.LogInformation("Inside the repository about to call GetAllBooks.");
-            _logger.LogDebug(DataEvents.GetMany, "Debugging info for stored proc {ProcName}", "GetAllBooks");
+            //_logger.LogInformation("Inside the repository about to call GetAllBooks.");
+            //_logger.LogDebug(DataEvents.GetMany, "Debugging info for stored proc {ProcName}", "GetAllBooks");
+            //var books = _db.Query<Book>("GetAllBooks", commandType: CommandType.StoredProcedure)
+            //    .ToList();
+            //return books;
+
+            //_logger.LogInformation("Inside the repository about to call GetAllBooks.");
+            _logger.RepoGetBooks();
+
+            //_logger.LogDebug(DataEvents.GetMany, "Debugging information for stored proc: {ProcName}", 
+            //                 "GetAllBooks");
+            _logger.RepoCallGetMany("GetAllBooks");
+
             var books = _db.Query<Book>("GetAllBooks", commandType: CommandType.StoredProcedure)
                 .ToList();
             return books;
