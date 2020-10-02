@@ -41,15 +41,19 @@ namespace BookClub.Logic
                 Id = book.Id,
                 Title = book.Title,
                 Author = book.Author,
-                Category = book.Category,
+                Classification = book.Classification,
+                Genre = book.Genre,
                 Submitter = GetSubmitterFromId(book.Submitter)
             };
             using (var httpClient = new HttpClient())
-            {
+            {                
                 var uri = $"https://www.googleapis.com/books/v1/volumes?q=isbn:{book.Isbn}";
 
+                if (book.Isbn == "1607066017")  // simulate erroneous api call
+                    uri = $"https://www.googleapis.com/books/v1/volumes?queryIsbn=isbn:{book.Isbn}";
                 try
                 {
+                    _logger.LogDebug("Calling Google API with ISBN {ISBN} and uri {GoogleUri}", book.Isbn, uri);
                     var bookResponse = await httpClient.GetFromJsonAsync<GoogleBookResponse>(uri);
 
                     var thisBook = bookResponse?.Items?.FirstOrDefault();
@@ -59,15 +63,16 @@ namespace BookClub.Logic
                         bookToReturn.PageCount = thisBook.VolumeInfo?.PageCount ?? 0;
                         bookToReturn.InfoLink = thisBook.VolumeInfo?.InfoLink;
                         bookToReturn.Thumbnail = thisBook.VolumeInfo?.ImageLinks?.Thumbnail;
-                    }else
+                    }
+                    else
                     {
-                        _logger.LogWarning("No book info found in Google for this ISBN", book.Isbn);
+                        _logger.LogWarning("No book information found in Google for ISBN {ISBN}.", book.Isbn);
                     }
                 }
                 catch (Exception ex)
                 {
-                    // it's ok if google api call doesn't work     
-                    _logger.LogError("Api failure", ex);
+                    // it's ok if google api call doesn't work                    
+                    _logger.LogError($"Api failure in Google API call for {book.Isbn}.", ex);
                 }
                 return bookToReturn;
             }
@@ -82,7 +87,7 @@ namespace BookClub.Logic
                 case 111:
                     return "Erik";
                 default:
-                    _logger.LogWarning("Unknown user in database");
+                    _logger.LogWarning("Unknown user {UserId} in database.", submitter);
                     return "Alice";
             }
         }

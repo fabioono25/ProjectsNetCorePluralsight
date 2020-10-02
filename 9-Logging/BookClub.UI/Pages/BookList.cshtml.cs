@@ -22,14 +22,14 @@ namespace BookClub.UI.Pages
         public async Task OnGetAsync()
         {
             var userId = User.Claims.FirstOrDefault(a => a.Type == "sub")?.Value;
-            _logger.LogInformation("{UserName} - ({UserId}) is about to call the book api to get all " +
+            _logger.LogInformation("UI ENTRY: {UserName} - ({UserId}) is about to call the book api to get all " +
                                    "books. {Claims}",
                 User.Identity.Name, userId, User.Claims);
 
-            using (var http = new HttpClient(new StandardHttpMessageHandler(HttpContext)))
+            using (var http = new HttpClient(new StandardHttpMessageHandler(HttpContext, _logger)))
             {
                 Books = (await http.GetFromJsonAsync<List<BookModel>>("https://localhost:44322/api/Book"))
-                    .OrderByDescending(a=> a.Id).ToList();                
+                    .OrderByDescending(a => a.Id).ToList();
             }
         }
     }

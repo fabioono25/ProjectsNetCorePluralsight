@@ -16,7 +16,6 @@ namespace BookClub.UI.Pages
         {
             _logger = logger;
         }
-
         [BindProperty]
         public Book Book { get; set; }
         public void OnGet()
@@ -30,10 +29,8 @@ namespace BookClub.UI.Pages
             {
                 return Page();
             }
-
-            _logger.LogInformation("submitting a new book", Book);
-
-            using (var http = new HttpClient(new StandardHttpMessageHandler(HttpContext)))
+            _logger.LogInformation("Submitting new book: {Book}", Book);
+            using (var http = new HttpClient(new StandardHttpMessageHandler(HttpContext, _logger)))
             {
                 await http.PostAsJsonAsync("https://localhost:44322/api/Book", Book);
             }

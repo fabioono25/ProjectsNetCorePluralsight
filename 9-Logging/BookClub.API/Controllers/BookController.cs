@@ -33,10 +33,11 @@ namespace BookClub.API.Controllers
             _logger.LogInformation("{UserId} is inside get all books API call.  {claims}",
                 userId, User.Claims);
 
-            using (_logger.BeginScope("Constructing books response for {UserId}", userId))
+            //using (_logger.BeginScope("Constructing books response for {ScopedUserId}", userId))
+            using (_logger.ApiGetAllBooksScope(userId))
             {
                 return await _bookLogic.GetAllBooks();
-            }
+            }            
         }
 
         [HttpGet("{id}", Name = "Get")]

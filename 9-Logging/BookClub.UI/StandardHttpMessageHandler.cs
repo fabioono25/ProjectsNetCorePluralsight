@@ -4,15 +4,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace BookClub.UI
 {
     public class StandardHttpMessageHandler : DelegatingHandler
     {
         private readonly HttpContext _httpContext;
-        public StandardHttpMessageHandler(HttpContext httpContext)
+        private readonly ILogger _logger;
+
+        public StandardHttpMessageHandler(HttpContext httpContext, ILogger logger)
         {
             _httpContext = httpContext;
+            _logger = logger;
             InnerHandler = new SocketsHttpHandler();
         }
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, 
@@ -29,7 +33,8 @@ namespace BookClub.UI
 
                 ex.Data.Add("API Route", $"GET {request.RequestUri}");
                 ex.Data.Add("API Status", (int)response.StatusCode);
-             
+
+                _logger.LogWarning("API Error when calling route, api status, requestUri");
                 throw ex;
             }
             return response;

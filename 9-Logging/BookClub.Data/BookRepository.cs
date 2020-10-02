@@ -10,23 +10,16 @@ namespace BookClub.Data
     public class BookRepository : IBookRepository
     {
         private readonly IDbConnection _db;
-        //private readonly ILogger<BookRepository> _logger;
         private readonly ILogger _logger;
 
-        public BookRepository(IDbConnection db, ILoggerFactory logger)
+        public BookRepository(IDbConnection db, ILoggerFactory loggerFactory)
         {
             _db = db;
-            _logger = logger.CreateLogger("Database");
+            _logger = loggerFactory.CreateLogger("Database");
         }
 
         public List<Book> GetAllBooks()
         {
-            //_logger.LogInformation("Inside the repository about to call GetAllBooks.");
-            //_logger.LogDebug(DataEvents.GetMany, "Debugging info for stored proc {ProcName}", "GetAllBooks");
-            //var books = _db.Query<Book>("GetAllBooks", commandType: CommandType.StoredProcedure)
-            //    .ToList();
-            //return books;
-
             //_logger.LogInformation("Inside the repository about to call GetAllBooks.");
             _logger.RepoGetBooks();
 
@@ -44,7 +37,7 @@ namespace BookClub.Data
             _db.Execute("InsertBook", new {
                 bookToSubmit.Title,
                 bookToSubmit.Author,
-                Classification = bookToSubmit.Category,
+                bookToSubmit.Classification,
                 bookToSubmit.Genre,
                 bookToSubmit.Isbn,
                 submitter
