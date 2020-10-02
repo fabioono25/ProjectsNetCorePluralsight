@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using BookClub.Data;
+using BookClub.Infrastructure;
+using BookClub.Infrastructure.Filters;
 using BookClub.Infrastructure.Middleware;
 using BookClub.Logic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace BookClub.API
@@ -31,6 +29,8 @@ namespace BookClub.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IScopeInformation, ScopeInformation>();
+
             services.AddScoped<IDbConnection, SqlConnection>(p =>
                 new SqlConnection(Configuration.GetConnectionString("BookClubDb")));
             services.AddScoped<IBookRepository, BookRepository>();
@@ -54,7 +54,7 @@ namespace BookClub.API
                 var builder = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser();
                 options.Filters.Add(new AuthorizeFilter(builder.Build()));
-                //options.Filters.Add(typeof(TrackActionPerformanceFilter));
+                options.Filters.Add(typeof(TrackActionPerformanceFilter));
             });
         }
 
