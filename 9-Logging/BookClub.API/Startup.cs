@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using BookClub.Data;
+using BookClub.Infrastructure.Middleware;
 using BookClub.Logic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -56,14 +59,15 @@ namespace BookClub.API
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseHsts();
+            //}
+            app.UseApiExceptionHandler(options => options.AddResponseDetails = UpdateApiErrorResponse);
 
             app.UseStaticFiles();
             app.UseSwagger();
@@ -84,6 +88,15 @@ namespace BookClub.API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void UpdateApiErrorResponse(HttpContext context, Exception ex, ApiError error)
+        {
+            if (ex.GetType().Name == nameof(SqlException))
+            {
+                error.Detail = "Exception was a database exception!";
+            }
+            //error.Links = "https://gethelpformyerror.com/";
         }
     }
 }
