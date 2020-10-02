@@ -1,22 +1,29 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BookClub.Logic.Models;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using BookClub.Infrastructure;
+using BookClub.Infrastructure.BaseClasses;
 
 namespace BookClub.UI.Pages
 {
     public class BookListModel : PageModel
     {
-        private readonly ILogger<BookListModel> _logger;
+        //private readonly ILogger<BookListModel> _logger;
+        private readonly ILogger _logger;
         public List<BookModel> Books;
+        private readonly Stopwatch _timer;
 
         public BookListModel(ILogger<BookListModel> logger)
         {
             _logger = logger;
+            _timer = new Stopwatch();
         }
 
         public async Task OnGetAsync()
@@ -31,6 +38,19 @@ namespace BookClub.UI.Pages
                 Books = (await http.GetFromJsonAsync<List<BookModel>>("https://localhost:44322/api/Book"))
                     .OrderByDescending(a => a.Id).ToList();
             }
+        }
+
+        public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)
+        {
+            _timer.Start();
+        }
+
+        public override void OnPageHandlerExecuted(PageHandlerExecutedContext context)
+        {
+            _timer.Stop();
+            _logger.LogRoutePerformance(context.ActionDescriptor.RelativePath,
+                context.HttpContext.Request.Method,
+                _timer.ElapsedMilliseconds);
         }
     }
 }

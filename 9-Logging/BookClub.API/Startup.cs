@@ -54,6 +54,7 @@ namespace BookClub.API
                 var builder = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser();
                 options.Filters.Add(new AuthorizeFilter(builder.Build()));
+                //options.Filters.Add(typeof(TrackActionPerformanceFilter));
             });
         }
 

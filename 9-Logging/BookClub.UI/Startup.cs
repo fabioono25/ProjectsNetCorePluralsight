@@ -68,6 +68,7 @@ namespace BookClub.UI
                     .RequireAuthenticatedUser()
                     .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
+                //config.Filters.Add(typeof(TrackPagePerformanceFilter));
             });
         }
 

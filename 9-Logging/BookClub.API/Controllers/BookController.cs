@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookClub.Data;
 using BookClub.Entities;
+using BookClub.Infrastructure.Attributes;
 using BookClub.Logic;
 using BookClub.Logic.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace BookClub.API.Controllers
 {
+    [TypeFilter(typeof(TrackPerformance))]
     [Route("api/[controller]")]
     [ApiController]
     public class BookController : ControllerBase
