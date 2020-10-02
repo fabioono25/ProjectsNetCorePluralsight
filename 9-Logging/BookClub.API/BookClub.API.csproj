@@ -21,8 +21,4 @@
     <ProjectReference Include="..\BookClub.Logic\BookClub.Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middleware\" />
-  </ItemGroup>
-
 </Project>

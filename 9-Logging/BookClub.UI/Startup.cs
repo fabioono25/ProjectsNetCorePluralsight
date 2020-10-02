@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BookClub.Infrastructure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +26,8 @@ namespace BookClub.UI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IScopeInformation, ScopeInformation>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;

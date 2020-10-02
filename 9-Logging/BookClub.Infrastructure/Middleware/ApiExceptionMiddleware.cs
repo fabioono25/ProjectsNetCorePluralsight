@@ -13,7 +13,7 @@ namespace BookClub.Infrastructure.Middleware
         private readonly ILogger<ApiExceptionMiddleware> _logger;
         private readonly ApiExceptionOptions _options;
 
-        public ApiExceptionMiddleware(ApiExceptionOptions options, RequestDelegate next, 
+        public ApiExceptionMiddleware(ApiExceptionOptions options, RequestDelegate next,
             ILogger<ApiExceptionMiddleware> logger)
         {
             _next = next;
@@ -29,11 +29,11 @@ namespace BookClub.Infrastructure.Middleware
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex, _options);
+                await HandleExceptionAsync(context, ex);
             }
         }
 
-        private Task HandleExceptionAsync(HttpContext context, Exception exception, ApiExceptionOptions opts)
+        private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var error = new ApiError
             {
@@ -43,11 +43,12 @@ namespace BookClub.Infrastructure.Middleware
                         "support team if the problem persists."
             };
 
-            opts.AddResponseDetails?.Invoke(context, exception, error);
+            _options.AddResponseDetails?.Invoke(context, exception, error);
 
             var innerExMessage = GetInnermostExceptionMessage(exception);
 
-            _logger.LogError(exception, "BADNESS!!! " + innerExMessage  + " -- {ErrorId}.", error.Id);           
+            var level = _options.DetermineLogLevel?.Invoke(exception) ?? LogLevel.Error;
+            _logger.Log(level, exception, "BADNESS!!! " + innerExMessage + " -- {ErrorId}.", error.Id);
 
             var result = JsonConvert.SerializeObject(error);
             context.Response.ContentType = "application/json";
