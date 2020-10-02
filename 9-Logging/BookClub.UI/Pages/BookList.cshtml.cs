@@ -13,17 +13,17 @@ using BookClub.Infrastructure.BaseClasses;
 
 namespace BookClub.UI.Pages
 {
-    public class BookListModel : PageModel
+    public class BookListModel : BasePageModel
     {
         //private readonly ILogger<BookListModel> _logger;
         private readonly ILogger _logger;
         public List<BookModel> Books;
-        private readonly Stopwatch _timer;
+        //private readonly Stopwatch _timer;
 
-        public BookListModel(ILogger<BookListModel> logger)
+        public BookListModel(ILogger<BookListModel> logger) : base(logger)
         {
             _logger = logger;
-            _timer = new Stopwatch();
+            //_timer = new Stopwatch();
         }
 
         public async Task OnGetAsync()
@@ -40,17 +40,17 @@ namespace BookClub.UI.Pages
             }
         }
 
-        public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)
-        {
-            _timer.Start();
-        }
+        //public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)
+        //{
+        //    _timer.Start();
+        //}
 
-        public override void OnPageHandlerExecuted(PageHandlerExecutedContext context)
-        {
-            _timer.Stop();
-            _logger.LogRoutePerformance(context.ActionDescriptor.RelativePath,
-                context.HttpContext.Request.Method,
-                _timer.ElapsedMilliseconds);
-        }
+        //public override void OnPageHandlerExecuted(PageHandlerExecutedContext context)
+        //{
+        //    _timer.Stop();
+        //    _logger.LogRoutePerformance(context.ActionDescriptor.RelativePath,
+        //        context.HttpContext.Request.Method,
+        //        _timer.ElapsedMilliseconds);
+        //}
     }
 }
