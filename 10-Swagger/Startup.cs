@@ -41,7 +41,9 @@ namespace Library.API
                 setupAction.Filters.Add(
                     new ProducesDefaultResponseTypeAttribute());
 
-                setupAction.ReturnHttpNotAcceptable = true;
+               setupAction.ReturnHttpNotAcceptable = true; // - 406 when sending another Accept header (like application/xml)
+
+                setupAction.OutputFormatters.Add(new XmlSerializerOutputFormatter());
 
                 var jsonOutputFormatter = setupAction.OutputFormatters
                     .OfType<JsonOutputFormatter>().FirstOrDefault();
