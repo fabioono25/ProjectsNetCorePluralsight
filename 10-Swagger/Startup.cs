@@ -3,6 +3,7 @@ using Library.API.Contexts;
 using Library.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,15 @@ namespace Library.API
         {
             services.AddMvc(setupAction =>
             {
-
+                // apply to all controllers the default return types
+                setupAction.Filters.Add(
+                    new ProducesResponseTypeAttribute(StatusCodes.Status400BadRequest));
+                setupAction.Filters.Add(
+                    new ProducesResponseTypeAttribute(StatusCodes.Status406NotAcceptable));
+                setupAction.Filters.Add(
+                    new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
+                setupAction.Filters.Add(
+                    new ProducesDefaultResponseTypeAttribute());
 
                 setupAction.ReturnHttpNotAcceptable = true;
 
