@@ -274,6 +274,9 @@ namespace Library.API
             //});
             app.UseSwaggerUI(setupAction =>
             {
+                setupAction.InjectStylesheet("/Assets/custom-ui.css");
+                setupAction.IndexStream = () => GetType().Assembly.GetManifestResourceStream("Library.API.EmbeddedAssets.index.html");
+
                 foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
                 {
                     setupAction.SwaggerEndpoint($"/swagger/" +
@@ -286,6 +289,13 @@ namespace Library.API
                 //    "Library API");
 
                 setupAction.RoutePrefix = "";
+
+                setupAction.DefaultModelExpandDepth(2);
+                setupAction.DefaultModelRendering(Swashbuckle.AspNetCore.SwaggerUI.ModelRendering.Model);
+                setupAction.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+
+                setupAction.EnableDeepLinking();
+                setupAction.DisplayOperationId();
             });
 
             app.UseStaticFiles();
