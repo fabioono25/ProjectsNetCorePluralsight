@@ -6,11 +6,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -93,40 +98,85 @@ namespace Library.API
 
             services.AddAutoMapper();
 
+            services.AddVersionedApiExplorer(setupAction =>
+            {
+                setupAction.GroupNameFormat = "'v'VV";
+            });
+
+            services.AddApiVersioning(setupAction =>
+            {
+                setupAction.AssumeDefaultVersionWhenUnspecified = true;
+                setupAction.DefaultApiVersion = new ApiVersion(1, 0);
+                setupAction.ReportApiVersions = true;
+                //setupAction.ApiVersionReader = new HeaderApiVersionReader("api-version"); //the name of the header we want to use
+                //setupAction.ApiVersionReader = new MediaTypeApiVersionReader();
+            });
+
+            var apiVersionDescriptionProvider =
+               services.BuildServiceProvider().GetService<IApiVersionDescriptionProvider>();
+
             services.AddSwaggerGen(setupAction =>
             {
-                setupAction.SwaggerDoc(
-                    "LibraryOpenAPISpecification",
-                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+                {
+                    setupAction.SwaggerDoc(
+                        $"LibraryOpenAPISpecification{description.GroupName}",
+                        new Microsoft.OpenApi.Models.OpenApiInfo()
+                        {
+                            Title = "Library API",
+                            Version = description.ApiVersion.ToString(),
+                            Description = "Through this API you can access authors and books.",
+                            Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                            {
+                                Email = "kevin.dockx@gmail.com",
+                                Name = "Kevin Dockx",
+                                Url = new Uri("https://www.twitter.com/KevinDockx")
+                            },
+                            License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                            {
+                                Name = "MIT License",
+                                Url = new Uri("https://opensource.org/licenses/MIT")
+                            }
+                        });
+                }
+
+                setupAction.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme()
+                {
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic",
+                    Description = "Input your username and password to access this API"
+                });
+
+                setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
                     {
-                        Title = "Library API",
-                        Version = "1",
-                        Description = "Through this API you can access authors and their books.",
-                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                        new OpenApiSecurityScheme
                         {
-                            Email = "kevin.dockx@gmail.com",
-                            Name = "Kevin Dockx",
-                            Url = new Uri("https://www.twitter.com/KevinDockx")
-                        },
-                        License = new Microsoft.OpenApi.Models.OpenApiLicense()
-                        {
-                            Name = "MIT License",
-                            Url = new Uri("https://opensource.org/licenses/MIT")
-                        }
-                    });
+                            Reference = new OpenApiReference {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "basicAuth" }
+                        }, new List<string>() }
+                });
 
-                // still error
-                //setupAction.ResolveConflictingActions(apiDescriptions =>
-                //{
-                //    var firstDescr = apiDescriptions.First();
-                //    var secDescr = apiDescriptions.ElementAt(1);
+                // custom strategy for selecting actions
+                setupAction.DocInclusionPredicate((documentName, apiDescription) =>
+                {
+                    var actionApiVersionModel = apiDescription.ActionDescriptor
+                    .GetApiVersionModel(ApiVersionMapping.Explicit | ApiVersionMapping.Implicit);
 
-                //    firstDescr.SupportedResponseTypes.AddRange(secDescr.SupportedResponseTypes.Where(a => a.StatusCode == 200));
+                    if (actionApiVersionModel == null)
+                    {
+                        return true;
+                    }
 
-                //    return firstDescr;
-
-                //    //return apiDescriptions.First();
-                //});
+                    if (actionApiVersionModel.DeclaredApiVersions.Any())
+                    {
+                        return actionApiVersionModel.DeclaredApiVersions.Any(v =>
+                        $"LibraryOpenAPISpecificationv{v.ToString()}" == documentName);
+                    }
+                    return actionApiVersionModel.ImplementedApiVersions.Any(v =>
+                        $"LibraryOpenAPISpecificationv{v.ToString()}" == documentName);
+                });
 
                 setupAction.OperationFilter<GetBookOperationFilter>();
                 setupAction.OperationFilter<CreateBookOperationFilter>();
@@ -136,10 +186,56 @@ namespace Library.API
 
                 setupAction.IncludeXmlComments(xmlCommentsFullPath);
             });
+
+            //services.AddSwaggerGen(setupAction =>
+            //{
+            //    // we can add one more specification
+            //    setupAction.SwaggerDoc(
+            //        "LibraryOpenAPISpecification",
+            //        new Microsoft.OpenApi.Models.OpenApiInfo()
+            //        {
+            //            Title = "Library API",
+            //            Version = "1",
+            //            Description = "Through this API you can access authors and their books.",
+            //            Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+            //            {
+            //                Email = "kevin.dockx@gmail.com",
+            //                Name = "Kevin Dockx",
+            //                Url = new Uri("https://www.twitter.com/KevinDockx")
+            //            },
+            //            License = new Microsoft.OpenApi.Models.OpenApiLicense()
+            //            {
+            //                Name = "MIT License",
+            //                Url = new Uri("https://opensource.org/licenses/MIT")
+            //            }
+            //        });
+
+            //    // still error
+            //    //setupAction.ResolveConflictingActions(apiDescriptions =>
+            //    //{
+            //    //    var firstDescr = apiDescriptions.First();
+            //    //    var secDescr = apiDescriptions.ElementAt(1);
+
+            //    //    firstDescr.SupportedResponseTypes.AddRange(secDescr.SupportedResponseTypes.Where(a => a.StatusCode == 200));
+
+            //    //    return firstDescr;
+
+            //    //    //return apiDescriptions.First();
+            //    //});
+
+            //    setupAction.OperationFilter<GetBookOperationFilter>();
+            //    setupAction.OperationFilter<CreateBookOperationFilter>();
+
+            //    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //    var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+
+            //    setupAction.IncludeXmlComments(xmlCommentsFullPath);
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            IApiVersionDescriptionProvider apiVersionDescriptionProvider)
         {
             if (env.IsDevelopment())
             {
@@ -156,11 +252,28 @@ namespace Library.API
 
             app.UseSwagger();
 
+            //app.UseSwaggerUI(setupAction =>
+            //{
+            //    // it's possible to add many swagger specifications
+            //    setupAction.SwaggerEndpoint(
+            //        "/swagger/LibraryOpenAPISpecification/swagger.json",
+            //        "Library API");
+
+            //    setupAction.RoutePrefix = "";
+            //});
             app.UseSwaggerUI(setupAction =>
             {
-                setupAction.SwaggerEndpoint(
-                    "/swagger/LibraryOpenAPISpecification/swagger.json",
-                    "Library API");
+                foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+                {
+                    setupAction.SwaggerEndpoint($"/swagger/" +
+                        $"LibraryOpenAPISpecification{description.GroupName}/swagger.json",
+                        description.GroupName.ToUpperInvariant());
+                }
+
+                //setupAction.SwaggerEndpoint(
+                //    "/swagger/LibraryOpenAPISpecification/swagger.json",
+                //    "Library API");
+
                 setupAction.RoutePrefix = "";
             });
 

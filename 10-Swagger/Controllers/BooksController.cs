@@ -11,12 +11,16 @@ using System.Threading.Tasks;
 
 namespace Library.API.Controllers
 {
+    //[Produces("application/json", "application/xml")]
+    //[Route("api/authors/{authorId}/books")]
+    //[ApiController]
+    //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+    //[ProducesResponseType(StatusCodes.Status406NotAcceptable)]
+    //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Produces("application/json", "application/xml")]
-    [Route("api/authors/{authorId}/books")]
+    //[Route("api/authors/{authorId}/books")]   
+    [Route("api/v{version:apiVersion}/authors/{authorId}/books")]
     [ApiController]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public class BooksController : ControllerBase
     { 
         private readonly IBookRepository _bookRepository;
