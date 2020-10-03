@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
+using Library.API.Authentication;
 using Library.API.Contexts;
 using Library.API.OperationFilters;
 using Library.API.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
@@ -46,8 +49,13 @@ namespace Library.API
                     new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
                 setupAction.Filters.Add(
                     new ProducesDefaultResponseTypeAttribute());
+                setupAction.Filters.Add(
+                    new ProducesResponseTypeAttribute(StatusCodes.Status401Unauthorized));
 
-               setupAction.ReturnHttpNotAcceptable = true; // - 406 when sending another Accept header (like application/xml)
+                setupAction.Filters.Add(
+                    new AuthorizeFilter());
+                
+                setupAction.ReturnHttpNotAcceptable = true; // - 406 when sending another Accept header (like application/xml)
 
                 setupAction.OutputFormatters.Add(new XmlSerializerOutputFormatter());
 
@@ -102,6 +110,9 @@ namespace Library.API
             {
                 setupAction.GroupNameFormat = "'v'VV";
             });
+
+            services.AddAuthentication("Basic")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("Basic", null);
 
             services.AddApiVersioning(setupAction =>
             {
@@ -278,6 +289,8 @@ namespace Library.API
             });
 
             app.UseStaticFiles();
+
+            app.UseAuthentication(); // before useMVC to not turn controllers accessible
 
             app.UseMvc();
         }
