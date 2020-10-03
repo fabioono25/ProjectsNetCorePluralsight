@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Library.API.Contexts;
+using Library.API.OperationFilters;
 using Library.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -113,6 +114,22 @@ namespace Library.API
                             Url = new Uri("https://opensource.org/licenses/MIT")
                         }
                     });
+
+                // still error
+                //setupAction.ResolveConflictingActions(apiDescriptions =>
+                //{
+                //    var firstDescr = apiDescriptions.First();
+                //    var secDescr = apiDescriptions.ElementAt(1);
+
+                //    firstDescr.SupportedResponseTypes.AddRange(secDescr.SupportedResponseTypes.Where(a => a.StatusCode == 200));
+
+                //    return firstDescr;
+
+                //    //return apiDescriptions.First();
+                //});
+
+                setupAction.OperationFilter<GetBookOperationFilter>();
+                setupAction.OperationFilter<CreateBookOperationFilter>();
 
                 var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
