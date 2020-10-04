@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -76,7 +75,7 @@ namespace TennisBookings.Web.Pages
                             WeatherDescription = "It's snowing!! Outdoor courts will remain closed until the snow has cleared.";
                             break;
                     }
-                }                
+                }
             }
 
             var productsResult = await _productsApiClient.GetProducts();

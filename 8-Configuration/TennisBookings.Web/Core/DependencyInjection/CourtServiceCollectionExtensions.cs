@@ -10,7 +10,7 @@ namespace TennisBookings.Web.Core.DependencyInjection
         public static IServiceCollection AddCourtServices(this IServiceCollection services)
         {
             services.TryAddScoped<ICourtMaintenanceService, CourtMaintenanceService>();
-            
+
             return services;
         }
     }

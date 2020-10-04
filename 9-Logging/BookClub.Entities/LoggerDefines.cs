@@ -11,10 +11,10 @@ namespace BookClub.Entities
 
         static LoggerDefines()
         {
-            _repoGetBooks = LoggerMessage.Define(LogLevel.Information, 0, 
+            _repoGetBooks = LoggerMessage.Define(LogLevel.Information, 0,
                 "Inside the repository about to call GetAllBooks.");
 
-            _repoCallGetManyProc = LoggerMessage.Define<string>(LogLevel.Debug, DataEvents.GetMany, 
+            _repoCallGetManyProc = LoggerMessage.Define<string>(LogLevel.Debug, DataEvents.GetMany,
                 "Debugging information for stored proc: {ProcName}");
 
             _apiGetAllBooksScope = LoggerMessage.DefineScope<string>(

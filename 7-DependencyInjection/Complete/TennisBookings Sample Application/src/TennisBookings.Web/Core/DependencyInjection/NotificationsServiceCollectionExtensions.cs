@@ -11,7 +11,7 @@ namespace TennisBookings.Web.Core.DependencyInjection
             services.TryAddSingleton<EmailNotificationService>();
             services.TryAddSingleton<SmsNotificationService>();
 
-            services.AddSingleton<INotificationService>(sp => 
+            services.AddSingleton<INotificationService>(sp =>
                 new CompositeNotificationService(
                     new INotificationService[]
                     {

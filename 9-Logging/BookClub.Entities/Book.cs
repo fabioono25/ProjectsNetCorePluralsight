@@ -10,7 +10,7 @@ namespace BookClub.Entities
         [Required]
         public string Author { get; set; }
         [Required]
-        public string Classification { get; set; }      
+        public string Classification { get; set; }
         public string Genre { get; set; }
         public string Description { get; set; }
         public string Isbn { get; set; }

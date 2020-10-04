@@ -16,7 +16,7 @@ namespace BookClub.Infrastructure.Attributes
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
-        {            
+        {
             _timer.Start();
         }
 

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 using TennisBookings.Web.Configuration;
 using TennisBookings.Web.Domain;
 

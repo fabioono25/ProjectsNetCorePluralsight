@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using BookClub.Infrastructure.BaseClasses;
+using BookClub.Logic.Models;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using BookClub.Logic.Models;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using BookClub.Infrastructure;
-using BookClub.Infrastructure.BaseClasses;
 
 namespace BookClub.UI.Pages
 {

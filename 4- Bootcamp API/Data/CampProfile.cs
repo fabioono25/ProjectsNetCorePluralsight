@@ -3,7 +3,7 @@ using CoreCodeCamp.Models;
 
 namespace CoreCodeCamp.Data
 {
-    public class CampProfile: Profile
+    public class CampProfile : Profile
     {
         public CampProfile()
         {

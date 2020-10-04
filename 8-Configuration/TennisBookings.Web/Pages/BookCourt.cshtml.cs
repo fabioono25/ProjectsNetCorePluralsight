@@ -69,7 +69,7 @@ namespace TennisBookings.Web.Pages
 
             if (user == null)
                 return new ChallengeResult();
-            
+
             var result = await _courtBookingManager.MakeBookingAsync(BookingStartTime, BookingStartTime.AddHours(BookingLengthInHours), CourtId, user.Member);
 
             if (result.BookingSuccessful)

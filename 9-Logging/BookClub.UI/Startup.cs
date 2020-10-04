@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using BookClub.Infrastructure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +7,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BookClub.UI
 {
@@ -83,10 +82,10 @@ namespace BookClub.UI
             //}
             //else
             //{
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
+            app.UseExceptionHandler("/Error");
+            app.UseHsts();
             //}
-            
+
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
@@ -103,7 +102,7 @@ namespace BookClub.UI
         {
             var claims = new List<Claim>();
             claims.AddRange(principal.Claims);  // retain any claims from originally authenticated user
-            
+
             var newIdentity = new ClaimsIdentity(claims, principal.Identity.AuthenticationType, "name", "role");
             return new ClaimsPrincipal(newIdentity);
         }

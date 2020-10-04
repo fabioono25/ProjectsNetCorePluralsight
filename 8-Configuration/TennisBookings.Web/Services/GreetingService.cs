@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using TennisBookings.Web.Configuration;
 
 namespace TennisBookings.Web.Services
@@ -18,8 +18,8 @@ namespace TennisBookings.Web.Services
         //private readonly IOptionsMonitor<GreetingConfiguration> _greetingConfiguration;
 
         public GreetingService(
-            IWebHostEnvironment webHostEnvironment, 
-            ILogger<GreetingConfiguration> logger, 
+            IWebHostEnvironment webHostEnvironment,
+            ILogger<GreetingConfiguration> logger,
             IOptionsMonitor<GreetingConfiguration> options)
         {
             var webRootPath = webHostEnvironment.WebRootPath;
@@ -37,7 +37,7 @@ namespace TennisBookings.Web.Services
                 logger.LogInformation("The greeting configuration has been updated.");
             });
         }
-        
+
         public string[] Greetings { get; }
 
         public string[] LoginGreetings { get; }

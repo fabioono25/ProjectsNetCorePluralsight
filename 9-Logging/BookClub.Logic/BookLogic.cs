@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using BookClub.Data;
-using BookClub.Logic.Models;
+﻿using BookClub.Data;
 using BookClub.Entities;
-using System;
-using System.Linq;
-using System.Net.Http.Json;
+using BookClub.Logic.Models;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace BookClub.Logic
 {
@@ -46,7 +46,7 @@ namespace BookClub.Logic
                 Submitter = GetSubmitterFromId(book.Submitter)
             };
             using (var httpClient = new HttpClient())
-            {                
+            {
                 var uri = $"https://www.googleapis.com/books/v1/volumes?q=isbn:{book.Isbn}";
 
                 if (book.Isbn == "1607066017")  // simulate erroneous api call

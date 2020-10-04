@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using TennisBookings.Web.Core;
 using TennisBookings.Web.Services;
 
@@ -32,7 +32,7 @@ namespace TennisBookings.Web.Pages
 
             await LoadAvailability();
         }
-        
+
         public IActionResult OnPost()
         {
             return RedirectToPage("FindAvailableCourts", new { searchDate = SearchDate.ToString("yyyy-MM-dd") });
@@ -69,7 +69,7 @@ namespace TennisBookings.Web.Pages
 
                 tableData.Add(data);
             }
-            
+
             Availability = tableData.Where(x => x.Hour <= lastHourWithAvailability);
         }
 
@@ -90,7 +90,7 @@ namespace TennisBookings.Web.Pages
             }
 
             public int Hour { get; }
-            
+
             public string HourText { get; }
 
             public string BookingStartDate { get; }

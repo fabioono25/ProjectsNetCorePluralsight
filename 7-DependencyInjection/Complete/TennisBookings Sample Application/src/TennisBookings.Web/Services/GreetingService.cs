@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.AspNetCore.Hosting;
-using Newtonsoft.Json;
 
 namespace TennisBookings.Web.Services
 {
@@ -10,7 +10,7 @@ namespace TennisBookings.Web.Services
     {
         private static readonly ThreadLocal<Random> Random
             = new ThreadLocal<Random>(() => new Random());
-        
+
         public GreetingService(IHostingEnvironment hostingEnvironment)
         {
             var webRootPath = hostingEnvironment.WebRootPath;
@@ -23,11 +23,11 @@ namespace TennisBookings.Web.Services
 
             LoginGreetings = greetingsData.LoginGreetings;
         }
-        
+
         public string[] Greetings { get; }
 
         public string[] LoginGreetings { get; }
-                
+
         [Obsolete("Prefer the GetRandomGreeting method defined in IGreetingService")]
         public string GetRandomHomePageGreeting()
         {

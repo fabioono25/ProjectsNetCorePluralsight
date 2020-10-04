@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using BookClub.Entities;
+﻿using BookClub.Entities;
 using Dapper;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
 namespace BookClub.Data
 {

@@ -17,7 +17,7 @@ namespace TennisBookings.Web.Core.DependencyInjection
                     .AddClasses(classes => classes.AssignableTo<ISingletonCourtBookingRule>())
                         .As<ICourtBookingRule>()
                         .WithSingletonLifetime());
-            
+
             services.TryAddScoped<IBookingRuleProcessor, BookingRuleProcessor>();
 
             return services;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using BookClub.Data;
+﻿using BookClub.Data;
 using BookClub.Infrastructure;
 using BookClub.Infrastructure.Filters;
 using BookClub.Infrastructure.Middleware;
@@ -15,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace BookClub.API
 {

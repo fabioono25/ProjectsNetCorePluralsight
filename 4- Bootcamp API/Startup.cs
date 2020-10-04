@@ -4,7 +4,6 @@ using CoreCodeCamp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc.Versioning.Conventions;
 using Microsoft.Extensions.DependencyInjection;
 

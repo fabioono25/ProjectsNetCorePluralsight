@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace BookClub.Infrastructure.Filters
 {
@@ -30,7 +27,7 @@ namespace BookClub.Infrastructure.Filters
                 _logger.LogRoutePerformance(context.ActionDescriptor.RelativePath,
                     context.HttpContext.Request.Method,
                     _timer.ElapsedMilliseconds);
-            }            
+            }
             //_logger.LogInformation("{PageName} {Method} model code took {ElapsedMilliseconds}.",
             //    context.ActionDescriptor.RelativePath, 
             //    context.HttpContext.Request.Method, 

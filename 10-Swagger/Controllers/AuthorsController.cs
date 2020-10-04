@@ -70,7 +70,7 @@ namespace Library.API.Controllers
             await _authorsRepository.SaveChangesAsync();
 
             // return the author
-            return Ok(_mapper.Map<Author>(authorFromRepo)); 
+            return Ok(_mapper.Map<Author>(authorFromRepo));
         }
 
         /// <summary>

@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using TennisBookings.Web.Configuration;
 using TennisBookings.Web.Core.DependencyInjection;
 using TennisBookings.Web.Data;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Hosting;
-using TennisBookings.Web.Configuration;
-using TennisBookings.Web.Services;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Options;
 
 namespace TennisBookings.Web
 {
@@ -58,7 +57,7 @@ namespace TennisBookings.Web
                 .AddCourtServices()
                 .AddWeatherForecasting(Configuration)
                 .AddExternalProducts()
-                .AddNotifications()                
+                .AddNotifications()
                 .AddGreetings()
                 .AddCaching()
                 .AddTimeServices()
@@ -76,7 +75,7 @@ namespace TennisBookings.Web
             services.AddIdentity<TennisBookingsUser, TennisBookingsRole>()
                 .AddEntityFrameworkStores<TennisBookingDbContext>()
                 .AddDefaultUI()
-                .AddDefaultTokenProviders();            
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

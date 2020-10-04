@@ -7,7 +7,7 @@ namespace CoreCodeCamp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OperationsController: ControllerBase
+    public class OperationsController : ControllerBase
     {
         private readonly IConfiguration _config;
 
@@ -21,7 +21,7 @@ namespace CoreCodeCamp.Controllers
         {
             try
             {
-                var root = (IConfigurationRoot) _config;
+                var root = (IConfigurationRoot)_config;
                 root.Reload();
                 return Ok();
             }

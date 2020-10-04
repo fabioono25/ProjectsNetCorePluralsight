@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BookClub.Data;
+﻿using BookClub.Data;
 using BookClub.Entities;
 using BookClub.Infrastructure;
-using BookClub.Infrastructure.Attributes;
 using BookClub.Logic;
 using BookClub.Logic.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookClub.API.Controllers
 {
-   // [TypeFilter(typeof(TrackPerformance))]
+    // [TypeFilter(typeof(TrackPerformance))]
     [Route("api/[controller]")]
     [ApiController]
     public class BookController : ControllerBase
@@ -23,7 +22,7 @@ namespace BookClub.API.Controllers
         private readonly ILogger<BookController> _logger;
         private readonly IScopeInformation _scopeInfo;
 
-        public BookController(IBookRepository bookRepo, IBookLogic bookLogic, 
+        public BookController(IBookRepository bookRepo, IBookLogic bookLogic,
                               ILogger<BookController> logger, IScopeInformation scopeInfo)
         {
             _bookRepo = bookRepo;
@@ -42,8 +41,8 @@ namespace BookClub.API.Controllers
             //using (_logger.BeginScope("{UserId} {OAuth2Scopes}", userId, oath2Scopes))
             //using (_logger.BeginScope(_scopeInfo.HostScopeInfo))
             //{
-                _logger.LogInformation("API ENTRY: Inside get all books API call.");
-                return await _bookLogic.GetAllBooks();
+            _logger.LogInformation("API ENTRY: Inside get all books API call.");
+            return await _bookLogic.GetAllBooks();
             //}
         }
 
@@ -52,7 +51,7 @@ namespace BookClub.API.Controllers
         {
             return new Book();
         }
-        
+
         [HttpPost]
         public void Post([FromBody] Book bookToSubmit)
         {

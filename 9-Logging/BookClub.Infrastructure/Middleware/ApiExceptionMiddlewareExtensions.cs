@@ -4,7 +4,7 @@ using System;
 namespace BookClub.Infrastructure.Middleware
 {
     public static class ApiExceptionMiddlewareExtensions
-    {        
+    {
         public static IApplicationBuilder UseApiExceptionHandler(this IApplicationBuilder builder)
         {
             var options = new ApiExceptionOptions();

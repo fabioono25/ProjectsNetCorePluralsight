@@ -4,7 +4,6 @@ using CoreCodeCamp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Threading.Tasks;
 
@@ -102,7 +101,7 @@ namespace CoreCodeCamp.Controllers
             try
             {
                 var talk = await _repository.GetTalkByMonikerAsync(moniker, id, true);
-                
+
                 if (talk == null)
                 {
                     return BadRequest("Talk does not exist");
@@ -123,7 +122,8 @@ namespace CoreCodeCamp.Controllers
                 if (await _repository.SaveChangesAsync())
                 {
                     return _mapper.Map<TalkModel>(talk);
-                }else
+                }
+                else
                 {
                     return BadRequest("Failed do update database");
                 }
@@ -151,7 +151,8 @@ namespace CoreCodeCamp.Controllers
                 if (await _repository.SaveChangesAsync())
                 {
                     return Ok();
-                }else
+                }
+                else
                 {
                     return BadRequest($"Failed to delete talk.");
                 }

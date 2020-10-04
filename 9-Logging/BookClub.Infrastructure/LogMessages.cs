@@ -12,7 +12,7 @@ namespace BookClub.Infrastructure
                 "{RouteName} {Method} code took {ElapsedMilliseconds}.");
         }
 
-        public static void LogRoutePerformance(this ILogger logger, string pageName, string method, 
+        public static void LogRoutePerformance(this ILogger logger, string pageName, string method,
             long elapsedMilliseconds)
         {
             _routePerformance(logger, pageName, method, elapsedMilliseconds, null);

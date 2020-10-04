@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using TennisBookings.Web.Controllers;
 using TennisBookings.Web.Services;
 using TennisBookings.Web.ViewModels;
 using Xunit;
-using Moq;
 
 namespace TennisBookings.Web.Tests.Controllers
 {

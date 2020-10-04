@@ -58,7 +58,7 @@ namespace TennisBookings.Web.Services
 
             return lastHourAvailable - startTime.Hour;
         }
-        
+
         private async Task<HourlyAvailabilityDictionary> InitialiseAvailability()
         {
             var bookingAvailability = new HourlyAvailabilityDictionary();

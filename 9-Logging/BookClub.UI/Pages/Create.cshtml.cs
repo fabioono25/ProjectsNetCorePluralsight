@@ -22,10 +22,10 @@ namespace BookClub.UI.Pages
         {
             Book = new Book();
         }
-        
+
         public async Task<IActionResult> OnPost()
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }

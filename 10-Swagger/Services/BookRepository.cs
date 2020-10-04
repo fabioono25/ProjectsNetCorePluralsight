@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace Library.API.Services
 {
     public class BookRepository : IBookRepository, IDisposable
-    {       
-        private LibraryContext _context; 
+    {
+        private LibraryContext _context;
 
         public BookRepository(LibraryContext context)
         {
@@ -78,7 +78,7 @@ namespace Library.API.Services
                 {
                     _context.Dispose();
                     _context = null;
-                } 
+                }
             }
         }
     }

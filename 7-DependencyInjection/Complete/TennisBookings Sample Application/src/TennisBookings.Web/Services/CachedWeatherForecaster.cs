@@ -10,7 +10,7 @@ namespace TennisBookings.Web.Services
         private readonly IWeatherForecaster _weatherForecaster;
         private readonly IDistributedCache<CurrentWeatherResult> _cache;
 
-        public CachedWeatherForecaster(IWeatherForecaster weatherForecaster, 
+        public CachedWeatherForecaster(IWeatherForecaster weatherForecaster,
             IDistributedCache<CurrentWeatherResult> cache)
         {
             _weatherForecaster = weatherForecaster;

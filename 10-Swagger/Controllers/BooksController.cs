@@ -22,7 +22,7 @@ namespace Library.API.Controllers
     [Route("api/v{version:apiVersion}/authors/{authorId}/books")]
     [ApiController]
     public class BooksController : ControllerBase
-    { 
+    {
         private readonly IBookRepository _bookRepository;
         private readonly IAuthorRepository _authorRepository;
         private readonly IMapper _mapper;
@@ -36,20 +36,20 @@ namespace Library.API.Controllers
             _authorRepository = authorRepository;
             _mapper = mapper;
         }
-       
+
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         //[ProducesDefaultResponseType]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks(
-        Guid authorId )
+        Guid authorId)
         {
             if (!await _authorRepository.AuthorExistsAsync(authorId))
             {
                 return NotFound();
             }
 
-            var booksFromRepo = await _bookRepository.GetBooksAsync(authorId); 
+            var booksFromRepo = await _bookRepository.GetBooksAsync(authorId);
             return Ok(_mapper.Map<IEnumerable<Book>>(booksFromRepo));
         }
 
@@ -71,7 +71,7 @@ namespace Library.API.Controllers
             Guid authorId,
             Guid bookId)
         {
-            if (! await _authorRepository.AuthorExistsAsync(authorId))
+            if (!await _authorRepository.AuthorExistsAsync(authorId))
             {
                 return NotFound();
             }

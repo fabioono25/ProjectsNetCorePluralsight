@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using BrandedProducts.Api.Models;
+﻿using BrandedProducts.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BrandedProducts.Api.Controllers
 {

@@ -8,7 +8,7 @@ namespace TennisBookings.Web.Configuration
 
         public ExternalServicesConfigurationValidation(IOptions<WeatherForecastingConfiguration> weatherConfig)
         {
-            _weatherConfig = weatherConfig.Value;            
+            _weatherConfig = weatherConfig.Value;
         }
 
         public ValidateOptionsResult Validate(string name, ExternalServicesConfig options)

@@ -25,7 +25,7 @@ namespace TennisBookings.Web.Controllers
 
             //var weatherForecaster = new WeatherForecaster();
             var currentWeather = _weaatherForecaster.GetCurrentWeather();
-            
+
             switch (currentWeather.WeatherCondition)
             {
                 case WeatherCondition.Sun:

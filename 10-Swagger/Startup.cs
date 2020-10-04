@@ -54,7 +54,7 @@ namespace Library.API
 
                 setupAction.Filters.Add(
                     new AuthorizeFilter());
-                
+
                 setupAction.ReturnHttpNotAcceptable = true; // - 406 when sending another Accept header (like application/xml)
 
                 setupAction.OutputFormatters.Add(new XmlSerializerOutputFormatter());
@@ -79,7 +79,7 @@ namespace Library.API
             // it's better to store the connection string in an environment variable)
             var connectionString = Configuration["ConnectionStrings:LibraryDBConnectionString"];
             services.AddDbContext<LibraryContext>(o => o.UseSqlServer(connectionString));
-            
+
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = actionContext =>

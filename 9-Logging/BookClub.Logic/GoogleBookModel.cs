@@ -9,7 +9,7 @@ namespace BookClub.Logic
         public DateTime PublishedDate { get; set; }
         public string Description { get; set; }
         public int PageCount { get; set; }
-        public Images ImageLinks {get;set;} 
+        public Images ImageLinks { get; set; }
         public string InfoLink { get; set; }
     }
 

@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using TennisBookings.Web.Configuration;
 using TennisBookings.Web.External.Models;
 

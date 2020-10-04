@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BookClub.Entities;
+﻿using BookClub.Entities;
+using System.Collections.Generic;
 
 namespace BookClub.Data
 {

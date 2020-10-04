@@ -11,17 +11,17 @@ namespace TennisBookings.Web.Pages
         private readonly IWeatherForecaster _weatherForecaster;
         private readonly IHomePageGreetingService _greetingService;
         private readonly FeaturesConfiguration _featuresConfiguration;
-        
+
         public string Greeting { get; private set; }
 
         public bool ShowGreeting => !string.IsNullOrEmpty(Greeting);
-        
+
         public string WeatherDescription { get; private set; } =
             "We don't have the latest weather information right now, please check again later.";
 
         public IndexModel(
-            IWeatherForecaster weatherForecaster, 
-            IOptions<FeaturesConfiguration> options, 
+            IWeatherForecaster weatherForecaster,
+            IOptions<FeaturesConfiguration> options,
             IHomePageGreetingService greetingService)
         {
             _weatherForecaster = weatherForecaster;
@@ -31,7 +31,7 @@ namespace TennisBookings.Web.Pages
 
         public async Task OnGet()
         {
-            Greeting = _greetingService.GetRandomHomePageGreeting();            
+            Greeting = _greetingService.GetRandomHomePageGreeting();
 
             if (_featuresConfiguration.EnableWeatherForecast)
             {

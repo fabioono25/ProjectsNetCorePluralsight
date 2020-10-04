@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace TennisBookings.Web.Services.Notifications
 {
@@ -17,7 +17,7 @@ namespace TennisBookings.Web.Services.Notifications
             // imagine sending logic via an external service
 
             _logger.LogInformation($"Sending email notification to user '{userId}'.");
-            
+
             return Task.CompletedTask;
         }
     }

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Threading.Tasks;
 using WeatherService.Api.Models;
 
 namespace WeatherService.Api.Controllers

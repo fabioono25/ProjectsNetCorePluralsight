@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using TennisBookings.Web.Areas.Admin.ViewModels;
 using TennisBookings.Web.Core;
-using TennisBookings.Web.Pages;
 using TennisBookings.Web.Services;
 
 namespace TennisBookings.Web.Areas.Admin.Controllers
@@ -23,7 +22,7 @@ namespace TennisBookings.Web.Areas.Admin.Controllers
             _courtBookingService = courtBookingService;
             _courtMaintenanceService = courtMaintenanceService;
         }
-        
+
         [HttpGet]
         [Route("Bookings/Upcoming")]
         public async Task<ActionResult> WeeklyBookings()
@@ -39,7 +38,7 @@ namespace TennisBookings.Web.Areas.Admin.Controllers
                 MemberName = $"{x.Member.Forename} {x.Member.Surname}"
             }).GroupBy(x => x.StartDateTime.Date);
 
-            var viewModel = new BookingListerViewModel {CourtBookings = bookingsViewModel, EndOfWeek = DateTime.UtcNow.GetEndOfWeek() };
+            var viewModel = new BookingListerViewModel { CourtBookings = bookingsViewModel, EndOfWeek = DateTime.UtcNow.GetEndOfWeek() };
 
             if (TempData.TryGetValue("BookingCancelled", out var successObject) is bool success)
             {

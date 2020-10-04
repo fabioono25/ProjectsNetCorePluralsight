@@ -14,8 +14,8 @@ namespace TennisBookings.Web.Services
         private readonly INotificationService _notificationService;
 
         public CourtBookingManager(
-            ICourtBookingService bookingService, 
-            IBookingRuleProcessor bookingRuleProcessor, 
+            ICourtBookingService bookingService,
+            IBookingRuleProcessor bookingRuleProcessor,
             INotificationService notificationService)
         {
             _bookingService = bookingService;

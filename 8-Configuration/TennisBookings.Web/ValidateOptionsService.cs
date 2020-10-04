@@ -15,12 +15,12 @@ namespace TennisBookings.Web
         private readonly IOptionsMonitor<ExternalServicesConfig> _externalServicesConfig;
 
         public ValidateOptionsService(
-            ILogger<ValidateOptionsService> logger, 
-            IHostApplicationLifetime appLifetime, 
+            ILogger<ValidateOptionsService> logger,
+            IHostApplicationLifetime appLifetime,
             IOptions<HomePageConfiguration> homePageConfig,
             IOptionsMonitor<ExternalServicesConfig> externalServicesConfig)
         {
-            _logger = logger;            
+            _logger = logger;
             _appLifetime = appLifetime;
             _homePageConfig = homePageConfig;
             _externalServicesConfig = externalServicesConfig;

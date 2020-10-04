@@ -14,7 +14,7 @@ namespace CoreCodeCamp.Controllers
     [Route("api/v{version:apiVersion}/camps")]
     [ApiVersion("2.0")]
     [ApiController]
-    public class Camps2Controller: ControllerBase
+    public class Camps2Controller : ControllerBase
     {
         private readonly ICampRepository _repository;
         private readonly IMapper _mapper;
@@ -78,7 +78,8 @@ namespace CoreCodeCamp.Controllers
             try
             {
                 //validations
-                if (!ModelState.IsValid) { 
+                if (!ModelState.IsValid)
+                {
                     //execute som action in the case of invalide model 
                 }
 

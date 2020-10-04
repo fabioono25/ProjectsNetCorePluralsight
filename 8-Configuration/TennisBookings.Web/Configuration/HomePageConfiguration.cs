@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
-
-namespace TennisBookings.Web.Configuration
+﻿namespace TennisBookings.Web.Configuration
 {
     public class HomePageConfiguration
     {

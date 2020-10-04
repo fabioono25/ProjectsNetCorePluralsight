@@ -1,6 +1,5 @@
 ﻿using BookClub.Infrastructure;
 using BookClub.Infrastructure.BaseClasses;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Threading.Tasks;
 
 namespace TennisBookings.Web.Data
