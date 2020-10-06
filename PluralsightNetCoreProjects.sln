@@ -91,6 +91,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10-Swagger", "10-Swagger", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.API", "10-Swagger\Library.API.csproj", "{DB43A965-F1A7-4071-8C00-1CDA36397F47}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11-GenDocumentationWithSwagger", "11-GenDocumentationWithSwagger", "{FECBEF82-DC67-47B8-A6B4-5DCC261588CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.API", "11-GenDocumentationWithSwagger\Library.API.csproj", "{F649FC29-D825-446F-BC0E-344B648C902E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -229,6 +233,10 @@ Global
 		{DB43A965-F1A7-4071-8C00-1CDA36397F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB43A965-F1A7-4071-8C00-1CDA36397F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB43A965-F1A7-4071-8C00-1CDA36397F47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F649FC29-D825-446F-BC0E-344B648C902E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F649FC29-D825-446F-BC0E-344B648C902E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F649FC29-D825-446F-BC0E-344B648C902E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F649FC29-D825-446F-BC0E-344B648C902E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -259,6 +267,7 @@ Global
 		{EF032FAF-26EF-47AF-9BDF-7F17CB056F4C} = {84CC5B10-4331-4F22-9952-2DDD1D676745}
 		{11BB9507-D4FE-4D9F-BA09-EE93B8E065F6} = {84CC5B10-4331-4F22-9952-2DDD1D676745}
 		{DB43A965-F1A7-4071-8C00-1CDA36397F47} = {9D6E99FA-A025-4F3E-9F81-16E2D7AE56ED}
+		{F649FC29-D825-446F-BC0E-344B648C902E} = {FECBEF82-DC67-47B8-A6B4-5DCC261588CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6275B6F8-6A01-4ED4-886A-4970F52EC774}
