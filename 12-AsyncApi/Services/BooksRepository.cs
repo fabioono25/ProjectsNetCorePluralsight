@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Books.API.Services
 {
-    public class BooksRepository : IBookRepository, IDisposable
+    public class BooksRepository : IBooksRepository, IDisposable
     {
         private BooksContext _context;
 
@@ -26,7 +26,14 @@ namespace Books.API.Services
 
         public async Task<IEnumerable<Book>> GetBooksAsync()
         {
+            _context.Database.ExecuteSqlCommand("WAIT FOR DELAY '00:00:02';");
             return await _context.Books.Include(b => b.Author).ToListAsync();
+        }
+
+        public IEnumerable<Book> GetBooks()
+        {
+            _context.Database.ExecuteSqlCommand("WAIT FOR DELAY '00:00:02';");
+            return _context.Books.Include(b => b.Author).ToList();
         }
 
         public void Dispose()
