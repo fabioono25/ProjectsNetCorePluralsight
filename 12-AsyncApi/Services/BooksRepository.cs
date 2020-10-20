@@ -1,9 +1,12 @@
 ﻿using Books.API.Contexts;
 using Books.API.Entities;
+using Books.API.ExternalModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Books.API.Services
@@ -11,10 +14,12 @@ namespace Books.API.Services
     public class BooksRepository : IBooksRepository, IDisposable
     {
         private BooksContext _context;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public BooksRepository(BooksContext context)
+        public BooksRepository(BooksContext context, IHttpClientFactory httpClientFactory)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _httpClientFactory = httpClientFactory;
         }
               
 
@@ -42,6 +47,58 @@ namespace Books.API.Services
                 .Include(b => b.Author).ToListAsync();
         }
 
+        public async Task<BookCover> GetBookCoverAsync(string coverId)
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            // pass through a dummy name
+            var response = await httpClient
+                   .GetAsync($"http://localhost:52644/api/bookcovers/{coverId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonSerializer.Deserialize<BookCover>(
+                    await response.Content.ReadAsStringAsync(),
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    });
+            }
+
+            return null;
+        }
+
+        public async Task<IEnumerable<BookCover>> GetBookCoversAsync(Guid bookId)
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var bookCovers = new List<BookCover>();
+
+            // create a list of fake bookcovers
+            var bookCoverUrls = new[]
+            {
+                $"http://localhost:52644/api/bookcovers/{bookId}-dummycover1",
+                $"http://localhost:52644/api/bookcovers/{bookId}-dummycover2?returnFault=true",
+                $"http://localhost:52644/api/bookcovers/{bookId}-dummycover3",
+                $"http://localhost:52644/api/bookcovers/{bookId}-dummycover4",
+                $"http://localhost:52644/api/bookcovers/{bookId}-dummycover5"
+            };
+
+            foreach (var bookCoverUrl in bookCoverUrls)
+            {
+                var response = await httpClient
+                   .GetAsync(bookCoverUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    bookCovers.Add(JsonSerializer.Deserialize<BookCover>(
+                        await response.Content.ReadAsStringAsync(),
+                        new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true,
+                        }));
+                }
+            }
+
+            return bookCovers;
+        }
 
         public void AddBook(Book bookToAdd)
         {

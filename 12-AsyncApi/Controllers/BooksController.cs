@@ -4,6 +4,7 @@ using Books.API.Models;
 using Books.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Books.API.Controllers
@@ -31,9 +32,22 @@ namespace Books.API.Controllers
             return Ok(bookEntities);
         }
 
+        //[HttpGet]
+        //[Route("{id}")]
+        //[BookResultFilter]
+        //public async Task<IActionResult> GetBook(Guid id)
+        //{
+        //    var bookEntity = await _booksRepository.GetBookAsync(id);
+        //    if (bookEntity == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(bookEntity);
+        //}
         [HttpGet]
-        [Route("{id}")]
-        [BookResultFilter]
+        [Route("{id}", Name = "GetBook")]
+        [BookWithCoversResultFilterAttribute]
         public async Task<IActionResult> GetBook(Guid id)
         {
             var bookEntity = await _booksRepository.GetBookAsync(id);
@@ -41,8 +55,17 @@ namespace Books.API.Controllers
             {
                 return NotFound();
             }
+            var bookCovers = await _booksRepository.GetBookCoversAsync(id);
 
-            return Ok(bookEntity);
+            // old-way of working with tuples
+            //var propertyBag = new Tuple<Entities.Book, IEnumerable<ExternalModels.BookCover>>
+            //    (bookEntity, bookCovers);
+
+            // passing multiple objects in a new way
+            //(Entities.Book book, IEnumerable<ExternalModels.BookCover> bookCovers)
+            //    propertyBag = (bookEntity, bookCovers);
+
+            return Ok((bookEntity, bookCovers));
         }
 
         [HttpPost]
