@@ -2,6 +2,7 @@
 using Books.API.Entities;
 using Books.API.ExternalModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,19 @@ namespace Books.API.Services
     {
         private BooksContext _context;
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILogger<BooksRepository> _logger;
+        private CancellationTokenSource _cancellationTokenSource;
 
-        public BooksRepository(BooksContext context, IHttpClientFactory httpClientFactory)
+
+        public BooksRepository(BooksContext context,
+            IHttpClientFactory httpClientFactory,
+            ILogger<BooksRepository> logger)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
-            _httpClientFactory = httpClientFactory;
+            _httpClientFactory = httpClientFactory ??
+                throw new ArgumentNullException(nameof(httpClientFactory));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-              
 
         public async Task<Book> GetBookAsync(Guid id)
         {
@@ -71,11 +78,11 @@ namespace Books.API.Services
     HttpClient httpClient, string bookCoverUrl,
     CancellationToken cancellationToken)
         {
-            throw new Exception("Cannot download book cover, " +
-                "writer isn't finishing book fast enough.");
+            //throw new Exception("Cannot download book cover, " +
+            //    "writer isn't finishing book fast enough.");
 
             var response = await httpClient
-                       .GetAsync(bookCoverUrl, cancellationToken);
+                       .GetAsync(bookCoverUrl, cancellationToken); // now we are passing the cancellation
 
             if (response.IsSuccessStatusCode)
             {
@@ -88,7 +95,8 @@ namespace Books.API.Services
                 return bookCover;
             }
 
-            //_cancellationTokenSource.Cancel();
+            // _cancellationTokenSource.IsCancellationRequested
+            _cancellationTokenSource.Cancel(); // requesting cancellation
             return null;
         }
 
@@ -96,7 +104,7 @@ namespace Books.API.Services
         {
             var httpClient = _httpClientFactory.CreateClient();
             var bookCovers = new List<BookCover>();
-            //_cancellationTokenSource = new CancellationTokenSource();
+            _cancellationTokenSource = new CancellationTokenSource();
 
             // create a list of fake bookcovers
             var bookCoverUrls = new[]
@@ -113,7 +121,7 @@ namespace Books.API.Services
                  from bookCoverUrl
                  in bookCoverUrls
                  select DownloadBookCoverAsync(httpClient, bookCoverUrl, // LINQ deferred execution: Task will start only when query evaluated
-                 new CancellationToken());
+                 _cancellationTokenSource.Token);
 
             // start the tasks
             var downloadBookCoverTasks = downloadBookCoverTasksQuery.ToList(); // evaluate now
@@ -123,17 +131,17 @@ namespace Books.API.Services
             }
             catch (OperationCanceledException operationCanceledException)
             {
-                //_logger.LogInformation($"{operationCanceledException.Message}");
+                _logger.LogInformation($"{operationCanceledException.Message}");
                 foreach (var task in downloadBookCoverTasks)
                 {
-                    //_logger.LogInformation($"Task {task.Id} has status {task.Status}");
+                    _logger.LogInformation($"Task {task.Id} has status {task.Status}");
                 }
 
                 return new List<BookCover>();
             }
             catch (Exception exception)
             {
-                //_logger.LogError($"{exception.Message}");
+                _logger.LogError($"{exception.Message}");
                 throw;
             }
 
@@ -186,6 +194,12 @@ namespace Books.API.Services
                 {
                     _context.Dispose();
                     _context = null;
+                }
+
+                if (_cancellationTokenSource != null)
+                {
+                    _cancellationTokenSource.Dispose();
+                    _cancellationTokenSource = null;
                 }
 
             }
