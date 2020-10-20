@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Books.API.Services
@@ -66,10 +67,36 @@ namespace Books.API.Services
             return null;
         }
 
+        private async Task<BookCover> DownloadBookCoverAsync(
+    HttpClient httpClient, string bookCoverUrl,
+    CancellationToken cancellationToken)
+        {
+            throw new Exception("Cannot download book cover, " +
+                "writer isn't finishing book fast enough.");
+
+            var response = await httpClient
+                       .GetAsync(bookCoverUrl, cancellationToken);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var bookCover = JsonSerializer.Deserialize<BookCover>(
+                    await response.Content.ReadAsStringAsync(),
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    });
+                return bookCover;
+            }
+
+            //_cancellationTokenSource.Cancel();
+            return null;
+        }
+
         public async Task<IEnumerable<BookCover>> GetBookCoversAsync(Guid bookId)
         {
             var httpClient = _httpClientFactory.CreateClient();
             var bookCovers = new List<BookCover>();
+            //_cancellationTokenSource = new CancellationTokenSource();
 
             // create a list of fake bookcovers
             var bookCoverUrls = new[]
@@ -81,23 +108,52 @@ namespace Books.API.Services
                 $"http://localhost:52644/api/bookcovers/{bookId}-dummycover5"
             };
 
-            foreach (var bookCoverUrl in bookCoverUrls)
-            {
-                var response = await httpClient
-                   .GetAsync(bookCoverUrl);
+            // create the tasks
+            var downloadBookCoverTasksQuery =
+                 from bookCoverUrl
+                 in bookCoverUrls
+                 select DownloadBookCoverAsync(httpClient, bookCoverUrl, // LINQ deferred execution: Task will start only when query evaluated
+                 new CancellationToken());
 
-                if (response.IsSuccessStatusCode)
+            // start the tasks
+            var downloadBookCoverTasks = downloadBookCoverTasksQuery.ToList(); // evaluate now
+            try
+            {
+                return await Task.WhenAll(downloadBookCoverTasks); // single task
+            }
+            catch (OperationCanceledException operationCanceledException)
+            {
+                //_logger.LogInformation($"{operationCanceledException.Message}");
+                foreach (var task in downloadBookCoverTasks)
                 {
-                    bookCovers.Add(JsonSerializer.Deserialize<BookCover>(
-                        await response.Content.ReadAsStringAsync(),
-                        new JsonSerializerOptions
-                        {
-                            PropertyNameCaseInsensitive = true,
-                        }));
+                    //_logger.LogInformation($"Task {task.Id} has status {task.Status}");
                 }
+
+                return new List<BookCover>();
+            }
+            catch (Exception exception)
+            {
+                //_logger.LogError($"{exception.Message}");
+                throw;
             }
 
-            return bookCovers;
+            //foreach (var bookCoverUrl in bookCoverUrls)
+            //{
+            //    var response = await httpClient
+            //       .GetAsync(bookCoverUrl);
+
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        bookCovers.Add(JsonSerializer.Deserialize<BookCover>(
+            //            await response.Content.ReadAsStringAsync(),
+            //            new JsonSerializerOptions
+            //            {
+            //                PropertyNameCaseInsensitive = true,
+            //            }));
+            //    }
+            //}
+
+            //return bookCovers;
         }
 
         public void AddBook(Book bookToAdd)
