@@ -31,8 +31,28 @@ namespace Books.API.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Book> GetBookAsync(Guid id)
+        // waiting for this result of legacy code
+        private Task<int> GetBookPages()
         {
+            return Task.Run(() => // free new thread requested - not optimized for Task.Run()
+            {
+                var pageCalculator = new Books.Legacy.ComplicatedPageCalculator();
+                _logger.LogInformation($"ThreadId when calculating the amount of pages: " +
+                    $"{System.Threading.Thread.CurrentThread.ManagedThreadId}");
+
+                return pageCalculator.CalculateBookPages();
+            });
+        }
+
+        public async Task<Book> GetBookAsync(Guid id) // Thread 1
+        {
+            //var pageCalculator = new Books.Legacy.ComplicatedPageCalculator();
+            //var amountOfPages = pageCalculator.CalculateBookPages();
+            _logger.LogInformation($"ThreadId when entering GetBookAsync: " +
+                $"{System.Threading.Thread.CurrentThread.ManagedThreadId}");
+
+            var bookPages = await GetBookPages();
+
             return await _context.Books
                 .Include(b => b.Author).FirstOrDefaultAsync(b => b.Id == id);
         }
