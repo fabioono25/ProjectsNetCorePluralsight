@@ -39,7 +39,7 @@ namespace SecuringAngularApps.STS
                         IdentityServerConstants.StandardScopes.Profile,
                         "projects-api"
                     },
-                    AccessTokenLifetime = 600
+                    AccessTokenLifetime = 600 //secconds to expire token
                 },
                 new Client
                 {
