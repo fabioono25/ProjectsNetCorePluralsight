@@ -37,6 +37,7 @@ namespace SecuringAngularApps.API
                 });
             });
 
+            // Require authentication from the server, including the authority URL for STS
             //services.AddAuthentication("Bearer")
             //    .AddJwtBearer("Bearer", options =>
             //    {
@@ -44,6 +45,8 @@ namespace SecuringAngularApps.API
             //        options.Audience = "projects-api";
             //        options.RequireHttpsMetadata = false;
             //    });
+
+            // using the Identity Service helper methods instead of the Microsoft ones
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                        .AddIdentityServerAuthentication(options =>
                        {
@@ -51,6 +54,8 @@ namespace SecuringAngularApps.API
                            options.ApiName = "projects-api";
                            options.RequireHttpsMetadata = false;
                        });
+
+            // creating a global authentication
             services.AddMvc(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()

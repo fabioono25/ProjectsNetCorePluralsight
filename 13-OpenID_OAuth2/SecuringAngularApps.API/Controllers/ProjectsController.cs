@@ -13,7 +13,7 @@ namespace SecuringAngularApps.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/Projects")]
-    //[Authorize]
+    //[Authorize] - needs to be an authenticated user for this app - not enforcing any access control yet
     public class ProjectsController : Controller
     {
         private readonly ProjectDbContext _context;
