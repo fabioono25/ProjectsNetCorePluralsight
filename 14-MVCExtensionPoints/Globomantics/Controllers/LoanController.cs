@@ -8,9 +8,12 @@ using Globomantics.Models;
 using Globomantics.Services;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
+using Globomantics.Filters;
 
 namespace Globomantics.Controllers
 {
+    [TypeFilter(typeof(FeatureAuthFilter),
+        Arguments = new object[] { "Loan" })]
     public class LoanController : Controller
     {
         private ILoanService loanService;
@@ -60,7 +63,8 @@ namespace Globomantics.Controllers
         [HttpPost]
         public IActionResult Personal(Person person)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 loanService.UpdateLoanPersonalInfo(person);
                 return RedirectToAction("Confirmation");
             }
