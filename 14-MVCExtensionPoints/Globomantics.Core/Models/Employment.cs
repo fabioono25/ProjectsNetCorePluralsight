@@ -8,7 +8,6 @@ namespace Globomantics.Models
 {
     public class Employment : IValidatableObject
     {
-        // property occured first 
         [Required(ErrorMessage = "Current employment type required")]
         public string CurrentType { get; set; }
         [Required(ErrorMessage = "Current employer required")]
