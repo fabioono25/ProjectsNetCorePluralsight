@@ -7,25 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 using Globomantics.Models;
 using Globomantics.Services;
 using Globomantics.Filters;
+using Globomantics.Conventions;
 
 namespace Globomantics.Controllers
 {
+    [ControllerVersion(Version = 2)]
     [RateExceptionFilter]
-    //RatesApiController - change the filename too
-    public class RatesController : Controller
+    [Route("api/tests")]
+    public class RatesControllerV2 : Controller
     {
         private IRateService rateService;
 
-        public RatesController(IRateService rateService)
+        public RatesControllerV2(IRateService rateService)
         {
             this.rateService = rateService;
         }
 
         [HttpGet]
-        //[Route("api/[controller]/mortgage")]
-        //[Route("api/{version:versionCheck(1)}/[controller]/mortgage")]
-        [Route("api/rates/mortgage")]
-        [Route("api/{version:versionCheck(1)}/rates/mortgage")]
+        [Route("mortgage")]
         public IActionResult GetMortgageRates()
         {
             return Ok(rateService.GetMortgageRates());
