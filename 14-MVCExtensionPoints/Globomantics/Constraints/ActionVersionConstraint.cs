@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,12 @@ namespace Globomantics.Constraints
         {
             double parsedVersion = 0;
 
-            if (double.TryParse(context.RouteContext.HttpContext.Request.Headers["x-version"].ToString(), out parsedVersion))
+            if (double.TryParse(context.RouteContext.HttpContext.Request
+                .Headers["x-version"].ToString(), out parsedVersion))
             {
-                return parsedVersion >= requiredVersion && parsedVersion < requiredVersion + 1;
+
+                return parsedVersion >= requiredVersion &&
+                    parsedVersion < requiredVersion + 1;
             }
 
             return false;

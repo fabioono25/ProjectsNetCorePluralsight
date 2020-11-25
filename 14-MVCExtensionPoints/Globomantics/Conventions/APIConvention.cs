@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Globomantics.Conventions
 {
-    public class APIConvention : IControllerModelConvention
+    public class APIConvention : Attribute, IControllerModelConvention
     {
         public void Apply(ControllerModel controller)
         {

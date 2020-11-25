@@ -34,7 +34,7 @@ namespace Globomantics
             {
                 options.Filters.Add(typeof(ModelValidationFilter));
                 options.ModelBinderProviders.Insert(0, new SurveyBinderProvider());
-                // applying conventions --> options.Conventions.Add(new APIConvention());
+                options.Conventions.Add(new APIConvention());
             });
             services.AddScoped<IDocumentService, DocumentService>();
             services.AddSingleton<ILoanService, LoanService>();
@@ -47,7 +47,7 @@ namespace Globomantics
             );
             services.Configure<RouteOptions>(options => {
                 options.ConstraintMap.Add("tokenCheck", typeof(TokenConstraint));
-                options.ConstraintMap.Add("versionCheck", typeof(VersionConstraint));
+                options.ConstraintMap.Add("versionCheck", typeof(RouteVersionConstraint));
                 }
             );
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Globomantics.Conventions
         {
             if (parameter.BindingInfo == null)
             {
-                parameter.BindingInfo = new Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo();
+                parameter.BindingInfo = new BindingInfo();
             }
 
             parameter.BindingInfo.BinderModelName = Name;

@@ -13,7 +13,7 @@ namespace Globomantics.Conventions
 
         public void Apply(ControllerModel controller)
         {
-            foreach (var selector in controller.Selectors)
+            foreach(var selector in controller.Selectors)
             {
                 selector.ActionConstraints.Add(new ActionVersionConstraint(Version));
             }

@@ -11,14 +11,12 @@ namespace Globomantics.Controllers
     {
         [HttpGet]
         [Route("promotion/{token:tokenCheck}")]
-        //public IActionResult Index([BindName(Name = "token")] string promoCode)
-        public IActionResult Index()
+        public IActionResult Index([BindName(Name = "token")] string promoCode)
         {
             return View();
         }
 
         [HttpPost]
-        [Route("promotion")]
         public IActionResult Submit()
         {
             // TODO: Sweepstakes entry logic
